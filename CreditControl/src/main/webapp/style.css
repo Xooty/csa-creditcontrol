@@ -1,0 +1,13 @@
+@charset "ISO-8859-1";
+
+.select-test {
+  width: 0%;
+  border: 1px solid var(--select-border);
+  border-radius: 0.05em;
+  padding: 0.25em 0.38em;
+  font-size: 1.25rem;
+  cursor: pointer;
+  line-height: 1.1;
+  background-color: #fff;
+  background-image: linear-gradient(to top, #f9f9f9, #fff 33%);
+}
