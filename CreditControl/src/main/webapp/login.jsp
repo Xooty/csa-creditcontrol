@@ -49,8 +49,6 @@
                 password: "Please enter password"
             }
         });
-        
-        // test
  
     });
 </script>
