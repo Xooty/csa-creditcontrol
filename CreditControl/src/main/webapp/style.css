@@ -1,13 +1,145 @@
 @charset "ISO-8859-1";
 
-.select-test {
-  width: 0%;
-  border: 1px solid var(--select-border);
-  border-radius: 0.05em;
-  padding: 0.25em 0.38em;
-  font-size: 1.25rem;
-  cursor: pointer;
-  line-height: 1.1;
-  background-color: #fff;
-  background-image: linear-gradient(to top, #f9f9f9, #fff 33%);
+.select_wrapper {
+	border: none;
+	width: 100%;
+	height: 40px;
+	-moz-padding-start: calc(10px - 3px);
+	padding-left: 10px;
+	background: rgb(221, 232, 217);
+	font-family: Advent Pro;
+	letter-spacing: 3px;
+	font-size: 20px;
+	box-shadow: 2px 2px 5px 1px rgba(0, 0, 0, 0.3);
+	border-radius: 3px;
+	outline: none;
+	cursor: pointer;
 }
+
+.select_option {
+	color: #666;
+	font-family: Advent Pro;
+}
+
+@media ( min-width : 200px) {
+	.logo_container {
+		display: table;
+		width: 100%;
+	}
+	.lo {
+		display: table-cell;
+		padding: 0.5em;
+	}
+	.lo:nth-child(1) {
+		width: 30%;
+		height: 50px;
+	}
+	.lo:nth-child(2) {
+		width: 70%;
+		position: relative;
+		bottom: 60px;
+		left: 70px;
+	}
+	.lo:nth-child(3) {
+		width: 10%;
+		position: relative;
+		bottom: 230px;
+		right: 150px;
+	}
+}
+
+.container_layout{
+	background-image: url("image/hintergrund4.PNG");
+	display:table;
+	width:100%;
+	opacity: 0.6;
+	position: relative;
+	bottom: 25px;
+}
+
+@media ( min-width : 200px) {
+	.col:nth-child(1) {
+		background: #c0c0c0;
+	}
+	.col:nth-child(2) {
+		background: #e7eee4;
+	}
+	.col:nth-child(3) {
+		background: ivory;
+	}
+	.container {
+		display: table;
+		border-spacing: 20px;
+		width: 100%;
+	}
+	.col {
+		display: table-cell;
+		height: 200px;
+		box-sizing: border-box;
+		padding: 0.5em;
+		vertical-align: center;
+		box-sizing: border-box;
+	}
+	.col:nth-child(1) {
+		width: 20%;
+	}
+	.col:nth-child(2) {
+		width: 20%;
+	}
+	.col:nth-child(3) {
+		width: 20%;
+	}
+}
+
+@media ( min-width : 200px) {
+	.con:nth-child(1) {
+		background: #89AC76;
+	}
+	.con:nth-child(2) {
+		background: #89AC76;
+	}
+	.container_mid {
+		display: table;
+		border-spacing: 5px;
+		width: 100%;
+		position: relative;
+		bottom:30px;
+	}
+	.con {
+		display: table-cell;
+		height: 120px;
+		box-sizing: border-box;
+		padding: 0.5em;
+		vertical-align: center;
+		box-sizing: border-box;
+	}
+	.con:nth-child(1) {
+		width: 50%;
+	}
+	.con:nth-child(2) {
+		width: 50%;
+	}
+}
+
+.con_style {
+	font-size: 30px;
+	text-align: center;
+	font-family: Advent Pro;
+	letter-spacing: 7px;
+}
+
+.button_profil {
+	background: #FFFFFF;
+	border-radius: 7px;
+	width:150px;
+	position: relative;
+	left: 100px;
+	font-size: 15px;
+	font-family: Advent Pro;
+	letter-spacing: 3px;
+	padding:5px;
+	text-align: center;
+}
+
+
+	

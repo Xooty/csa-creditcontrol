@@ -10,44 +10,56 @@
 
 <body>
 
-	<table>
-		<tr>
-			<td><img alt="background" width="150px" src="image/punkte.PNG"></td>
-			<td width="60%"><img alt="logo" src="image/logo_ppt.JPG" width="150%"></td>
-		</tr>
-	</table>
 
-	<table style="width: 100%">
-		<tr bgcolor=#89AC76>
-			<td align="center" height="100px"><span style="font-size: 30px">Privatfinanzierung</span>
-				<select class="select-test" name="ListPrivat">
-					<option value="1">Auswählen ...</option>
-					<option value="2">Voraussetzung</option>
-					<option value="3">Informationen</option>
-					<option value="4">Kredit beantragen</option>
-					<option value="5">Kreditrechner</option>
-					<option value="6">Supportanfrage</option>
-				</select></td>
-
-			<td align="center" height="100px"><span style="font-size: 30px">Baufinanzierung</span>
-				<select class="select-test" name="ListMortage">
-					<option value="1">Auswählen ...</option>
-					<option value="2">Voraussetzung</option>
-					<option value="3">Informationen</option>
-					<option value="4">Kredit beantragen</option>
-					<option value="5">Kreditrechner</option>
-					<option value="6">Supportanfrage</option>
-				</select></td>
-		</tr>
-	</table>
-	
-	<table>
-		<tr>
+	<div class="logo_container">
+		<div class="lo">
+			<img src="image/punkte.PNG">
+		</div>
+		<div class="lo">
 			
-		</tr>
-		
-		
-	</table>
+		<img src="image/logo_ppt.JPG" width="65%">
+		</div>
+		<div class="lo">
+			<button class="button_profil"><img src="image/profil.png" align="left"><p>Profil</p></button>
+		</div>
+	</div>
+
+
+	<div class="container_mid">
+		<div class="con">
+			<div class="con_style">Privatkredit</div>
+			<div style="height: 15px;"></div>
+			<select class="select_wrapper fa fa-angle-down">
+				<option class="select_option">Voraussetzung</option>
+				<option class="select_option">Kredit beantragen</option>
+				<option class="select_option">Support</option>
+			</select>
+		</div>
+		<div class="con">
+			<div class="con_style">Baufinanzierung</div>
+			<div style="height: 15px;"></div>
+			<select class="select_wrapper fa fa-angle-down">
+				<option class="select_option">Voraussetzung</option>
+				<option class="select_option">Kredit beantragen</option>
+				<option class="select_option">Support</option>
+			</select>
+		</div>
+	</div>
+	
+	<div class="container_layout">
+	<div style="height: 200px"></div>
+	<div class="container">
+		<div class="col">Ablauf</div>
+
+		<div class="col">Kreditrechner</div>
+
+		<div class="col">Test3</div>
+	</div>
+</div>
+
+
+
+
 </body>
 
 
