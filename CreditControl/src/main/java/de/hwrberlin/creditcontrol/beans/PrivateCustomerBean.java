@@ -4,25 +4,27 @@ import java.io.Serializable;
 
 public class PrivateCustomerBean extends CustomerBean {
 
-	private String cosignign;
+	private String cosigning;
 	
 	public PrivateCustomerBean() {
 	
 	}
 
 	/**
-	 * @return the cosignign
+	 * @return the cosigning
 	 */
-	public String getCosignign() {
-		return cosignign;
+	public String getCosigning() {
+		return cosigning;
 	}
 
 	/**
-	 * @param cosignign the cosignign to set
+	 * @param cosigning the cosigning to set
 	 */
-	public void setCosignign(String cosignign) {
-		this.cosignign = cosignign;
+	public void setCosigning(String cosigning) {
+		this.cosigning = cosigning;
 	}
+
+	
 	
 	
 }
