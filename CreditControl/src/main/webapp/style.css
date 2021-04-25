@@ -4,12 +4,26 @@
 	border: none;
 	width: 100%;
 	height: 40px;
-	-moz-padding-start: calc(10px - 3px);
 	padding-left: 10px;
 	background: rgb(221, 232, 217);
 	font-family: Advent Pro;
 	letter-spacing: 3px;
 	font-size: 20px;
+	box-shadow: 2px 2px 5px 1px rgba(0, 0, 0, 0.3);
+	border-radius: 3px;
+	outline: none;
+	cursor: pointer;
+}
+
+.select_antrag {
+	border: none;
+	width: 104%;
+	height: 25px;
+	padding-left: 10px;
+	background: #ffffff;
+	font-family: Advent Pro;
+	letter-spacing: 3px;
+	font-size: 15px;
 	box-shadow: 2px 2px 5px 1px rgba(0, 0, 0, 0.3);
 	border-radius: 3px;
 	outline: none;
@@ -48,46 +62,39 @@
 	}
 }
 
-.container_layout{
-	background-image: url("image/hintergrund4.PNG");
-	display:table;
-	width:100%;
-	opacity: 0.6;
-	position: relative;
-	bottom: 25px;
-}
-
-@media ( min-width : 200px) {
-	.col:nth-child(1) {
-		background: #c0c0c0;
-	}
-	.col:nth-child(2) {
-		background: #e7eee4;
-	}
-	.col:nth-child(3) {
-		background: ivory;
-	}
-	.container {
+	.layoutstyle {
 		display: table;
-		border-spacing: 20px;
+		border-spacing: 5px;
 		width: 100%;
+		height: 550px;
+		position: relative;
+		bottom:30px;
+		background-image: url("image/hintergrund3.PNG");
+		opacity: 0.9
 	}
-	.col {
+	
+@media ( min-width : 200px) {	
+	
+	.layout_container{
+		display: table;
+		border-spacing: 5px;
+		width: 60%;
+		height: 400px;
+		position: relative;
+		bottom:-70px;
+		right:-400px;
+		
+	
+	}
+	
+	.layout {
 		display: table-cell;
-		height: 200px;
-		box-sizing: border-box;
 		padding: 0.5em;
 		vertical-align: center;
 		box-sizing: border-box;
-	}
-	.col:nth-child(1) {
+		background: #EEEEEE;
 		width: 20%;
-	}
-	.col:nth-child(2) {
-		width: 20%;
-	}
-	.col:nth-child(3) {
-		width: 20%;
+		opacity: 0.7;
 	}
 }
 
@@ -105,6 +112,7 @@
 		position: relative;
 		bottom:30px;
 	}
+	
 	.con {
 		display: table-cell;
 		height: 120px;
@@ -141,5 +149,48 @@
 	text-align: center;
 }
 
+.button_antrag {
+	background: #FFFFFF;
+	border-radius: 7px;
+	width:200px;
+	position: relative;
+	right: 350px;
+	font-size: 13.5px;
+	font-family: Advent Pro;
+	letter-spacing: 3px;
+	padding:5px;
+	text-align: center;
+	top:240px;
+}
 
+.inputstyle{
+	width: 100%;
+	font-family: Advent Pro;
+	font-size: 15px;
+	height: 25px;
+	border-radius: 5px;
+	position:relative;
+	left:50px;
+}
+
+.label_antrag{
+	font-family: Advent Pro;
+	font-size:20px;
+	
+}
+
+.loginbox{
+	position:absolute;
+	top:50%;
+	left:50%;
+	transform:translate(-50%,-50%);
+	width:350px;
+	height:420px;
+	padding:80px 40px;
+	box-sizing: border-box;
+	background:rgba(0,0,0,0.5);
+	font-family: Advent Pro;
+	font-size: 20px;
+	
+}
 	
