@@ -2,9 +2,9 @@ package de.hwrberlin.creditcontrol.mysql;
 
 public class CustomerController {
 	
-	private Customer model;
+	private CustomerBean model;
 	private CustomerView view;
-	public CustomerController(Customer model, CustomerView view) {
+	public CustomerController(CustomerBean model, CustomerView view) {
 		
 		this.model = model;
 		this.view = view;
