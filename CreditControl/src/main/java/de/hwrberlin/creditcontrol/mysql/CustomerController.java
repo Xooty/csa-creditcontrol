@@ -1,5 +1,7 @@
 package de.hwrberlin.creditcontrol.mysql;
 
+import de.hwrberlin.creditcontrol.beans.CustomerBean;
+
 public class CustomerController {
 	
 	private CustomerBean model;

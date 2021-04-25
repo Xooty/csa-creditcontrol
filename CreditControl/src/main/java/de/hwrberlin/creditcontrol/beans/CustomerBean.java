@@ -1,4 +1,4 @@
-package de.hwrberlin.creditcontrol.mysql;
+package de.hwrberlin.creditcontrol.beans;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -7,14 +7,14 @@ import de.hwrberlin.creditcontrol.SalutationType;
 
 public class CustomerBean implements Serializable {
 
-	private SalutationType Type;
-	private String firstname, surname;
-	private Date brithdate;
+	protected SalutationType Type;
+	protected String firstname, surname;
+	protected Date brithdate;
 	
-	private String street;
-	private int housenumber, postcode;
+	protected String street;
+	protected int housenumber, postcode;
 	
-	private String identity_card_number;
+	protected String identity_card_number;
 
 	public CustomerBean() {
 	}
