@@ -3,7 +3,7 @@ package de.hwrberlin.creditcontrol.mysql;
 import java.io.Serializable;
 import java.util.Date;
 
-import de.hwrberlin.creditcontrol.mysql.Customer.SalutationType;
+import de.hwrberlin.creditcontrol.SalutationType;
 
 public class CustomerBean implements Serializable {
 
