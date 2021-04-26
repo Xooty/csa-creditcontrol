@@ -2,7 +2,7 @@ package de.hwrberlin.creditcontrol.beans;
 
 import java.io.Serializable;
 
-public class BusinessCustomerBean  {
+public class BusinessCustomerBean extends CustomerBean {
 
 	private String companyname;
 	private boolean verified;

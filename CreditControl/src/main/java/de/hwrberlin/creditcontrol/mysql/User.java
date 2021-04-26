@@ -5,11 +5,9 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import de.hwrberlin.creditcontrol.Main;
-
 public class User {
 
-private int user_id;
+	private int user_id;
 	
 	private String user_name, user_password;
 	
@@ -50,8 +48,8 @@ private int user_id;
 	public void setUserName(String user_name) {
 		this.user_name = user_name;
 		
-		MySQL mysql = Main.getMySQL();
-		Connection connection = mysql.openConnection();
+//		MySQL mysql = Main.getMySQL();
+		Connection connection = MySQL.openConnection();
 		PreparedStatement st = null;
 		ResultSet rs = null;
 		
@@ -63,7 +61,7 @@ private int user_id;
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
-			mysql.closeRessources(rs, st, connection);
+			MySQL.closeRessources(rs, st, connection);
 		}
 	}
 	
@@ -74,8 +72,7 @@ private int user_id;
 	public void setUserPassword(String password) {
 		this.user_password = password;
 		
-		MySQL mysql = Main.getMySQL();
-		Connection connection = mysql.openConnection();
+		Connection connection = MySQL.openConnection();
 		PreparedStatement st = null;
 		ResultSet rs = null;
 		
@@ -87,7 +84,7 @@ private int user_id;
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
-			mysql.closeRessources(rs, st, connection);
+			MySQL.closeRessources(rs, st, connection);
 		}
 	}
 	
@@ -111,8 +108,7 @@ private int user_id;
 		this.user_password = password;
 		this.permission = permission;
 		
-		MySQL mysql = Main.getMySQL();
-		Connection connection = mysql.openConnection();
+		Connection connection = MySQL.openConnection();
 		PreparedStatement st = null;
 		ResultSet rs = null;
 		
@@ -126,7 +122,7 @@ private int user_id;
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
-			mysql.closeRessources(rs, st, connection);
+			MySQL.closeRessources(rs, st, connection);
 		}
 	}
 }

@@ -1,51 +1,76 @@
 package de.hwrberlin.creditcontrol.servlets;
 
 import java.io.IOException;
+import java.io.PrintWriter;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
-import de.hwrberlin.creditcontrol.Main;
-import de.hwrberlin.creditcontrol.mysql.User;
+import de.hwrberlin.creditcontrol.mysql.MySQL;
 
-@WebServlet("/login")
 public class UserLoginServlet extends HttpServlet {
-	private static final long serialVersionUID = 1L;
-	
-	public UserLoginServlet() {
-		super();
+
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		response.setContentType("text/html");
+		PrintWriter out = response.getWriter();
+
+		String name = request.getParameter("username");
+		String password = request.getParameter("password");
+
+		LoginBean bean = new LoginBean();
+		bean.setUsername(name);
+		bean.setPassword(password);
+		request.setAttribute("bean", bean);
+
+		if (validate(bean)) {
+			RequestDispatcher rd = request.getRequestDispatcher("website.jsp");
+			rd.forward(request, response);
+		} else {
+			RequestDispatcher rd = request.getRequestDispatcher("loginform.jsp");
+			rd.forward(request, response);
+		}
+
 	}
 
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		doPost(request, response);
+	@Override
+	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		doPost(req, resp);
 	}
-	
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException {
-		String email = request.getParameter("email");
-		String password = request.getParameter("password");
-		
-		User user = Main.getMySQL().getUser();
-		String destPage = "login.jsp";
-		
-		if (user != null) {
-			HttpSession session = request.getSession();
-			session.setAttribute("user", user);
-			destPage = "home.jsp";
-		} else {
-			String message = "Invalid email/password";
-			request.setAttribute("message", message);
-		}
-		RequestDispatcher dispatcher = request.getRequestDispatcher(destPage);
+
+	public boolean validate(LoginBean bean) {
+
+		Connection connection = null;
+		PreparedStatement st = null;
+		ResultSet rs = null;
+
+		boolean valid = false;
+
 		try {
-			dispatcher.forward(request, response);
-		} catch (ServletException | IOException e) {
+			connection = MySQL.openConnection();
+			st = connection.prepareStatement("SELECT * FROM users WHERE user_name = ? AND user_password = ?");
+			st.setString(1, bean.getUsername());
+			st.setString(2, bean.getPassword());
+
+			rs = st.executeQuery();
+
+			if (rs.first()) {
+				valid = true;
+			}
+
+			MySQL.closeRessources(rs, st, connection);
+
+		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+
+		return valid;
 	}
 }
