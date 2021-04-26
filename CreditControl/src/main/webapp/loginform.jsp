@@ -20,8 +20,9 @@
 			<p>Password</p>
 			<input type="password" name="password" placeholder="••••••••••" style="border-radius: 3px; border: none;"required> 
 			<input type="submit" value="Sign In" style="border-radius: 3px; border: none;width: 25%;height: 15%">
-			<input type="submit" value="Registration" style="border-radius: 3px; border: none;position: absolute;bottom: 20%;right:58%;width: 30%">
 			</form>
+			
+			<input type="submit" value="Registrierung" style="border-radius: 3px; border: none;position: absolute;bottom: 20%;right:58%;width: 30%">
 		</div>
 		
 		//onclick="window.location.href='http://localhost:8080/CreditControl/website.jsp';"

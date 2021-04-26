@@ -7,7 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-<%@page import="de.hwrberlin.creditcontrol.servlets.LoginBean"%>  
+<%@page import="de.hwrberlin.creditcontrol.login.LoginBean"%>  
   
 <p>You are successfully logged in!</p>  
 <%  

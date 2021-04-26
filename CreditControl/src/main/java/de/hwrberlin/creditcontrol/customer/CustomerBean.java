@@ -1,9 +1,9 @@
-package de.hwrberlin.creditcontrol.beans;
+package de.hwrberlin.creditcontrol.customer;
 
 import java.io.Serializable;
 import java.util.Date;
 
-import de.hwrberlin.creditcontrol.SalutationType;
+import de.hwrberlin.creditcontrol.controller.SalutationType;
 
 public class CustomerBean implements Serializable {
 

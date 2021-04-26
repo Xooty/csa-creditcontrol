@@ -49,6 +49,10 @@
 </head>
 
 <body>
+	<div><p>Username: <%= request.getSession().getAttribute("username") %></p></div>
+	<div>
+		<a href="website.jsp" onClick="<% request.getSession().invalidate(); %>">Logout</a>
+	</div>
 	<div class="logo_container">
 		<div class="lo">
 			<img src="image/punkte.PNG">
@@ -58,7 +62,7 @@
 		</div>
 		<div class="lo">
 			<button class="button_profil"
-				onclick="window.location.href='loginform.jsp';">
+				onclick="window.location.href='http://localhost:8080/CreditControl/loginform.jsp';">
 				<img src="image/profil.png" align="left">
 				<p>Profil</p>
 			</button>

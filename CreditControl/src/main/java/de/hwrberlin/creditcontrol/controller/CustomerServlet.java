@@ -9,8 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import de.hwrberlin.creditcontrol.SalutationType;
-import de.hwrberlin.creditcontrol.beans.PrivateCustomerBean;
+import de.hwrberlin.creditcontrol.customer.PrivateCustomerBean;
 
 
 public class CustomerServlet extends HttpServlet {

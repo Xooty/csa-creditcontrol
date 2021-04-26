@@ -10,7 +10,7 @@ public class MySQL {
 
 	public static String host = "ni5852421-1.web03.nitrado.hosting";
 	public static String database = "ni5852421_1sql1";
-	public static String user = "";
+	public static String user = "ni5852421_1sql1";
 	public static String password = "9ba28297";
 	public static String port = "3306";
 
