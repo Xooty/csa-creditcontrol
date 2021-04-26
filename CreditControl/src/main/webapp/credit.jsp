@@ -30,8 +30,7 @@
 		<div class="layout_container">
 			<div class="layout"></div>
 		</div>
-		<table
-			style="position: relative; left: 600px; bottom: 300px; border-spacing: 15px;">
+		<table style="position: relative; left: 600px; bottom: 300px; border-spacing: 15px;">
 			<tr>
 				<th></th>
 				<th style="left: 45px; position: relative; font-family: Advent Pro;">Bitte
@@ -90,12 +89,5 @@
 			</button>
 		</div>
 	</div>
-
-
-
-
-
-
-
 </body>
 </html>
