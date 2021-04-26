@@ -49,10 +49,7 @@
 </head>
 
 <body>
-	<div><p>Username: <%= request.getSession().getAttribute("username") %></p></div>
-	<div>
-		<a href="website.jsp" onClick="<% request.getSession().invalidate(); %>">Logout</a>
-	</div>
+	<div style="position: absolute;left: 1705px;top:90px;font-family: Advent Pro;"><p>Username: <%= request.getSession().getAttribute("username") %></p></div>
 	<div class="logo_container">
 		<div class="lo">
 			<img src="image/punkte.PNG">
@@ -61,11 +58,13 @@
 			<img src="image/logo_ppt.JPG" width="65%">
 		</div>
 		<div class="lo">
-			<button class="button_profil"
-				onclick="window.location.href='http://localhost:8080/CreditControl/loginform.jsp';">
+			<button class="button_profil">
 				<img src="image/profil.png" align="left">
 				<p>Profil</p>
 			</button>
+		<div style="position: absolute;bottom:-45px;left:110px;font-family: Advent Pro;">
+			<a href="website.jsp" onClick="<% request.getSession().invalidate(); %>">Logout</a>
+		</div>
 		</div>
 	</div>
 	<div class="container_mid">

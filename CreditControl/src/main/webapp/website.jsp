@@ -60,7 +60,7 @@
 			<button class="button_profil"
 				onclick="window.location.href='loginform.jsp';">
 				<img src="image/profil.png" align="left">
-				<p>Profil</p>
+				<p>Anmelden</p>
 			</button>
 		</div>
 	</div>
