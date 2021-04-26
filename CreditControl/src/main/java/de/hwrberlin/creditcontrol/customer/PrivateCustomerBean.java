@@ -1,4 +1,4 @@
-package de.hwrberlin.creditcontrol.beans;
+package de.hwrberlin.creditcontrol.customer;
 
 import java.io.Serializable;
 

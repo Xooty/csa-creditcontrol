@@ -1,4 +1,4 @@
-package de.hwrberlin.creditcontrol;
+package de.hwrberlin.creditcontrol.controller;
 
 public enum SalutationType {
 	

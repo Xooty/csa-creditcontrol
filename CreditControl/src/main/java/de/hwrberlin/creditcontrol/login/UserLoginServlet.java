@@ -1,7 +1,6 @@
-package de.hwrberlin.creditcontrol.servlets;
+package de.hwrberlin.creditcontrol.login;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -19,8 +18,8 @@ public class UserLoginServlet extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		response.setContentType("text/html");
-		PrintWriter out = response.getWriter();
+		response.setContentType("text/html;  charset=UTF-8");
+		response.setCharacterEncoding("UTF-8");
 
 		String name = request.getParameter("username");
 		String password = request.getParameter("password");
@@ -28,10 +27,11 @@ public class UserLoginServlet extends HttpServlet {
 		LoginBean bean = new LoginBean();
 		bean.setUsername(name);
 		bean.setPassword(password);
-		request.setAttribute("bean", bean);
+		request.getSession().setAttribute("login", bean);
+		request.getSession().setAttribute("username", name);
 
 		if (validate(bean)) {
-			RequestDispatcher rd = request.getRequestDispatcher("website.jsp");
+			RequestDispatcher rd = request.getRequestDispatcher("website_after_login.jsp");
 			rd.forward(request, response);
 		} else {
 			RequestDispatcher rd = request.getRequestDispatcher("loginform.jsp");

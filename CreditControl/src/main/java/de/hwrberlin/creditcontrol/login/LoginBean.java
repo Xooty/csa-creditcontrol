@@ -1,4 +1,4 @@
-package de.hwrberlin.creditcontrol.servlets;
+package de.hwrberlin.creditcontrol.login;
 
 public class LoginBean {
 
