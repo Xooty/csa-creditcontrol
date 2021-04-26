@@ -10,7 +10,7 @@ public class MySQL {
 
 	public static String host = "ni5852421-1.web03.nitrado.hosting";
 	public static String database = "ni5852421_1sql1";
-	public static String user = "";
+	public static String user = "ni5852421_1sql1";
 	public static String password = "9ba28297";
 	public static String port = "3306";
 
@@ -18,9 +18,9 @@ public class MySQL {
 	
 	private User user_application;
 	
-	// Im Konstruktor wird überprüft, ob die Datei mysql.txt vorhanden ist und wird zur Not mit den Daten wieder gefüllt
-	// Des Weiteren werden die nötigen Tabellen mit Dummy Werten erstellt
-//	public MySQL(String path) { // Path für Desktop: System.getProperty("user.home") + /Desktop/CreditControl/mysql.txt"
+	// Im Konstruktor wird ï¿½berprï¿½ft, ob die Datei mysql.txt vorhanden ist und wird zur Not mit den Daten wieder gefï¿½llt
+	// Des Weiteren werden die nï¿½tigen Tabellen mit Dummy Werten erstellt
+//	public MySQL(String path) { // Path fï¿½r Desktop: System.getProperty("user.home") + /Desktop/CreditControl/mysql.txt"
 //
 //		this.file = new File(path);
 //		if (!this.file.exists()) {

@@ -97,12 +97,12 @@
 			<textarea id="text_area_priv"
 				style="display: none; resize: none; width: 50%; height: 300px; position: relative; left: 450px; top: 50px; font-family: Advent Pro; border: none; border-radius: 45px; font-size: 25px;text-align: center;background-color: transparent;" readonly="readonly">Ein Privatkredit wird als Kredit verstanden, welcher von Privatpersonen zur freien Verwendung genutzt wird.
 
-			Voraussetzung für die Aufnahme eines Privatkredites:
+Voraussetzung für die Aufnahme eines Privatkredites:
 			
-			Mindestalter: 18 Jahre
-			Kreditsumme Minimum: 1.000€
-			Kreditsumme Maximum: 100.000€
-			Laufzeit: variabel – max. 120 Monate
+Mindestalter: 18 Jahre
+Kreditsumme Minimum: 1.000€
+Kreditsumme Maximum: 100.000€
+Laufzeit: variabel - max. 120 Monate
 </textarea>
 			<textarea id="text_area_bau"
 				style="display: none; resize: none; width: 50%; height: 300px; position: relative; left: 450px; top: 50px; font-family: Advent Pro; border: none; border-radius: 45px; font-size: 25px;text-align: center;background-color: transparent;" readonly="readonly">Voraussetzung für die Aufnahme einer Baufinanzierung: </textarea>
