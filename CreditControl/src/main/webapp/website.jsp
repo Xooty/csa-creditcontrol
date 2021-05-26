@@ -8,42 +8,50 @@
 <title>CreditControl</title>
 
 <script>
-	function changeFuncPriv() {
+function changeFuncPriv() {
 
-		var selectBoxPriv = document.getElementById("box_priv");
-		var selectedValuePriv = selectBoxPriv.options[selectBoxPriv.selectedIndex].value;
-		var textareaPriv = document.getElementById("text_area_priv");
+	var selectBoxPriv = document.getElementById("box_priv");
+	var selectedValuePriv = selectBoxPriv.options[selectBoxPriv.selectedIndex].value;
+	
+	var textareaPriv = document.getElementById("text_area_priv");
+	var textareaBau = document.getElementById("text_area_bau");		
 
-		if (selectedValuePriv == "1") {
-			textareaPriv.style.display = "block";
-		} else {
-			textareaPriv.style.display = "none";
-		}
-
-		if (selectedValuePriv == "2") {
-			window.location = "credit.jsp";
-		}
-
+	if (selectedValuePriv == "1") {
+		textareaPriv.style.display = "block";
+		textareaBau.style.display = "none";
+		
+	} else {
+		textareaPriv.style.display = "none";
 	}
 
-	function changeFuncBau() {
-
-		var selectBoxBau = document.getElementById("box_bau");
-
-		var selectedValueBau = selectBoxBau.options[selectBoxBau.selectedIndex].value;
-
-		var textareaBau = document.getElementById("text_area_bau");
-
-		if (selectedValueBau == "1") {
-			textareaBau.style.display = "block";
-		} else {
-			textareaBau.style.display = "none";
-		}
-
-		if (selectedValueBau == "2") {
-			window.location = "credit.jsp";
-		}
+	if (selectedValuePriv == "2") {
+		window.location = "loginform.jsp";
 	}
+
+}
+
+function changeFuncBau() {
+
+	var selectBoxBau = document.getElementById("box_bau");
+
+	var selectedValueBau = selectBoxBau.options[selectBoxBau.selectedIndex].value;
+
+	var textareaBau = document.getElementById("text_area_bau");
+	var textareaPriv = document.getElementById("text_area_priv");		
+
+	if (selectedValueBau == "1") {
+		textareaBau.style.display = "block";
+		textareaPriv.style.display = "none";
+	} else {
+		textareaBau.style.display = "none";
+	}
+
+	if (selectedValueBau == "2") {
+		window.location = "loginform.jsp";
+	}
+			
+}
+
 </script>
 
 </head>
@@ -70,7 +78,7 @@
 			<div style="height: 15px;"></div>
 			<select class="select_wrapper" id="box_priv"
 				onchange="changeFuncPriv();">
-				<option class="select_option" selected>Bitte wählen:</option>
+				<option class="select_option" value="0" selected disabled hidden>Bitte wählen:</option>
 				<option class="select_option" value="1" id="select_priv1">Voraussetzung</option>
 				<option class="select_option" value="2" id="select_priv2">Kredit
 					beantragen</option>
@@ -82,7 +90,7 @@
 			<div style="height: 15px;"></div>
 			<select class="select_wrapper" id="box_bau"
 				onchange="changeFuncBau();">
-				<option class="select_option" selected>Bitte wählen:</option>
+				<option class="select_option" value="0" selected disabled hidden>Bitte wählen:</option>
 				<option class="select_option" value="1" id="select_bau1">Voraussetzung</option>
 				<option class="select_option" value="2" id="select_bau2">Kredit
 					beantragen</option>
@@ -104,7 +112,16 @@ Kreditsumme Maximum: 100.000€
 Laufzeit: variabel - max. 120 Monate
 </textarea>
 			<textarea id="text_area_bau"
-				style="display: none; resize: none; width: 50%; height: 300px; position: relative; left: 450px; top: 50px; font-family: Advent Pro; border: none; border-radius: 45px; font-size: 25px;text-align: center;background-color: transparent;" readonly="readonly">Voraussetzung für die Aufnahme einer Baufinanzierung: </textarea>
+				style="display: none; resize: none; width: 50%; height: 300px; position: relative; left: 450px; top: 50px; font-family: Advent Pro; border: none; border-radius: 45px; font-size: 25px;text-align: center;background-color: transparent;" readonly="readonly">Eine Baufinanzierung bezeichnet die Anschaffung einer Immobilie auf Kredit. Dabei kann nicht nur die Immobilie selbst finanziert werden, sondern auch dazugehörige Grundstücke und Nebenanlagen.
+				
+Voraussetzung für die Aufnahme einer Baufinanzierung:
+			
+Mindestalter: 18 Jahre
+Kreditsumme Minimum: 50.000€
+Kreditsumme Maximum: 750.000€
+Laufzeit: variabel - max. 420 Monate
+</textarea>	
+		
 		</div>
 	</div>
 </body>

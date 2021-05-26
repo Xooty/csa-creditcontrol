@@ -28,18 +28,18 @@
 	</div>
 
 	<div class="layoutstyle">
-		<div class="layout_container">
+		<div class="layout_container" style="height: 450px">
 			<div class="layout"></div>
 		</div>
 		<table
-			style="position: relative; left: 600px; bottom: 300px; border-spacing: 15px;">
+			style="position: absolute; left: 600px; bottom: 75px; border-spacing: 15px;">
 			<tr>
 				<th></th>
 				<th style="left: 45px; position: relative; font-family: Advent Pro;">Bitte
 					füllen Sie aus:</th>
 			</tr>
 			<tr>
-				<td><label class="label_antrag">Verwendungszweck</label></td>
+				<td><label class="label_antrag">Immobilienart</label></td>
 				<td><input class="inputstyle" form="my_form" type="text"
 					name="form_verwendungszweck" required></input></td>
 			</tr>
@@ -87,6 +87,11 @@
 						<option class="select_option" value=">3500">über 3500 €</option>
 				</select></td>
 			</tr>
+			<tr>
+				<td><label class="label_antrag">Adresse des Grundstückes</label></td>
+				<td><input class="inputstyle" form="my_form" type="text"
+					name="form_adresse" required></input></td>
+			</tr>
 		</table>
 
 		<div class="lo">
@@ -96,14 +101,13 @@
 					<p>Antrag abschicken</p>
 				</button>
 			</form>
-
-			<div id="kreditRechner"
-				style="position: absolute; bottom: 250px; right: 450px; font-family: Advent Pro; font-size: 20px">
-
-				<p>Ratenhöhe/Monat:<p>
-				<p>Zinssatz p .a :</p>
-
-			</div>
+			
+		<div id="kreditRechner" style="position: absolute;bottom:90px;right: 470px; font-family: Advent Pro;font-size: 20px">
+		
+			<p>Ratenhöhe/Monat:<p>
+			<p>Zinssatz p .a :</p>
+		
+		</div>
 		</div>
 	</div>
 </body>

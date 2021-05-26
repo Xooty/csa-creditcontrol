@@ -12,10 +12,16 @@
 
 		var selectBoxPriv = document.getElementById("box_priv");
 		var selectedValuePriv = selectBoxPriv.options[selectBoxPriv.selectedIndex].value;
+		
 		var textareaPriv = document.getElementById("text_area_priv");
+		var textareaBau = document.getElementById("text_area_bau");		
+		var textareaProfil = document.getElementById("text_profil");
 
 		if (selectedValuePriv == "1") {
 			textareaPriv.style.display = "block";
+			textareaBau.style.display = "none";
+			textareaProfil.style.display= "none";
+			
 		} else {
 			textareaPriv.style.display = "none";
 		}
@@ -33,9 +39,13 @@
 		var selectedValueBau = selectBoxBau.options[selectBoxBau.selectedIndex].value;
 
 		var textareaBau = document.getElementById("text_area_bau");
+		var textareaPriv = document.getElementById("text_area_priv");		
+		var textareaProfil = document.getElementById("text_profil");
 
 		if (selectedValueBau == "1") {
 			textareaBau.style.display = "block";
+			textareaPriv.style.display = "none";
+			textareaProfil.style.display= "none";
 		} else {
 			textareaBau.style.display = "none";
 		}
@@ -43,13 +53,32 @@
 		if (selectedValueBau == "2") {
 			window.location = "credit.jsp";
 		}
+				
 	}
+	
+	function profil(){
+		var textareaProfil = document.getElementById("text_profil");
+		
+		textareaProfil.style.display = "block";
+	
+		var textareaPriv = document.getElementById("text_area_priv");
+		var textareaBau = document.getElementById("text_area_bau");
+		
+		textareaBau.style.display = "none";
+		textareaPriv.style.display = "none";
+	}
+
 </script>
 
 </head>
 
 <body>
-	<div style="position: absolute;left: 1705px;top:90px;font-family: Advent Pro;"><p>Username: <%= request.getSession().getAttribute("username") %></p></div>
+	<div
+		style="position: absolute; left: 1705px; top: 90px; font-family: Advent Pro;">
+		<p>
+			Username:
+			<%=request.getSession().getAttribute("username")%></p>
+	</div>
 	<div class="logo_container">
 		<div class="lo">
 			<img src="image/punkte.PNG">
@@ -58,13 +87,15 @@
 			<img src="image/logo_ppt.JPG" width="65%">
 		</div>
 		<div class="lo">
-			<button class="button_profil">
+			<button class="button_profil" onclick="profil();">
 				<img src="image/profil.png" align="left">
 				<p>Profil</p>
 			</button>
-		<div style="position: absolute;bottom:-45px;left:110px;font-family: Advent Pro;">
-			<a href="website.jsp" onClick="<% request.getSession().invalidate(); %>">Logout</a>
-		</div>
+			<div
+				style="position: absolute; bottom: -45px; left: 110px; font-family: Advent Pro;">
+				<a href="website.jsp"
+					onClick="<%request.getSession().invalidate();%>">Logout</a>
+			</div>
 		</div>
 	</div>
 	<div class="container_mid">
@@ -93,11 +124,14 @@
 			</select>
 		</div>
 	</div>
+
+
 	<div
 		style="background-image: url('image/hintergrund5.PNG'); opacity: 0.9">
 		<div style="height: 450px; width: 100%;">
 			<textarea id="text_area_priv"
-				style="display: none; resize: none; width: 50%; height: 300px; position: relative; left: 450px; top: 50px; font-family: Advent Pro; border: none; border-radius: 45px; font-size: 25px;text-align: center;background-color: transparent;" readonly="readonly">Ein Privatkredit wird als Kredit verstanden, welcher von Privatpersonen zur freien Verwendung genutzt wird.
+				style="display: none; resize: none; width: 50%; height: 300px; position: absolute; left: 450px; top: 540px; font-family: Advent Pro; border: none; border-radius: 45px; font-size: 25px; text-align: center; background-color: transparent;"
+				readonly="readonly">Ein Privatkredit wird als Kredit verstanden, welcher von Privatpersonen zur freien Verwendung genutzt wird.
 
 			Voraussetzung für die Aufnahme eines Privatkredites:
 			
@@ -106,9 +140,30 @@
 			Kreditsumme Maximum: 100.000€
 			Laufzeit: variabel – max. 120 Monate
 </textarea>
+		</div>
+		<div>
 			<textarea id="text_area_bau"
-				style="display: none; resize: none; width: 50%; height: 300px; position: relative; left: 450px; top: 50px; font-family: Advent Pro; border: none; border-radius: 45px; font-size: 25px;text-align: center;background-color: transparent;" readonly="readonly">Voraussetzung für die Aufnahme einer Baufinanzierung: </textarea>
+				style="display: none; resize: none; width: 50%; height: 300px; position: absolute; left: 450px; top: 540px; font-family: Advent Pro; border: none; border-radius: 45px; font-size: 25px; text-align: center; background-color: transparent;"
+				readonly="readonly">Eine Baufinanzierung bezeichnet die Anschaffung einer Immobilie auf Kredit. Dabei kann nicht nur die Immobilie selbst finanziert werden, sondern auch dazugehörige Grundstücke und Nebenanlagen.
+				
+Voraussetzung für die Aufnahme einer Baufinanzierung:
+			
+Mindestalter: 18 Jahre
+Kreditsumme Minimum: 50.000€
+Kreditsumme Maximum: 750.000€
+Laufzeit: variabel - max. 420 Monate
+</textarea>
+		</div>
+
+		<div id="text_profil"
+			style="display: none; resize: none; width: 50%; height: 300px; position: absolute; left: 450px; top: 540px; font-family: Advent Pro; border: none; border-radius: 45px; font-size: 25px; text-align: center; background-color: transparent;">
+		<p>Nachname:</p>
+		<p>Vorname:</p>
+		<p>E-Mail-Adresse:</p>
+		<p>Benutzername:</p>
+		
 		</div>
 	</div>
+
 </body>
 </html>
