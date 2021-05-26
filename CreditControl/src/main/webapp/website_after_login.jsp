@@ -51,7 +51,7 @@
 		}
 
 		if (selectedValueBau == "2") {
-			window.location = "credit.jsp";
+			window.location = "credit_mortage.jsp";
 		}
 				
 	}
