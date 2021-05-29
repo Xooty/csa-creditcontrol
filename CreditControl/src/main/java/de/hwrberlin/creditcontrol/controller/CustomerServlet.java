@@ -32,7 +32,7 @@ public class CustomerServlet extends HttpServlet {
     	bean.setType(type);
     	bean.setFirstname(firstname);
     	bean.setSurname(surname);
-    	bean.setBrithdate(date);
+    	bean.setBirthdate(date);
 	}
 	
 }

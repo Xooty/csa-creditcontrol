@@ -1,8 +1,8 @@
 package de.hwrberlin.creditcontrol.inquiry;
 
-public class InquiryBean {
+public class CreditApplicationBean {
 
-	private String credit_usage, employer, employment_type, gross_income, credit_value, runtime;
+	private String credit_usage, employer, employment_type, gross_income, credit_value, runtime, mortage_type, address;
 
 	public String getCreditUsage() {
 		return credit_usage;
@@ -50,5 +50,21 @@ public class InquiryBean {
 
 	public void setRuntime(String runtime) {
 		this.runtime = runtime;
+	}
+	
+	public String getMortageType() {
+		return this.mortage_type;
+	}
+	
+	public void setMortageType(String mortage_type) {
+		this.mortage_type = mortage_type;
+	}
+	
+	public String getAddress() {
+		return this.address;
+	}
+	
+	public void setAddress(String address) {
+		this.address = address;
 	}
 }

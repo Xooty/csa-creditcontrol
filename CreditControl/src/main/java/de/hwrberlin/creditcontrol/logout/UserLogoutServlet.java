@@ -21,6 +21,9 @@ public class UserLogoutServlet extends HttpServlet {
 			throws ServletException, IOException {
 		response.setContentType("text/html;  charset=UTF-8");
 		response.setCharacterEncoding("UTF-8");
+		
+		request.getSession().invalidate();
+		
 		RequestDispatcher rd = request.getRequestDispatcher("website.jsp");
 		rd.forward(request, response);
 	}

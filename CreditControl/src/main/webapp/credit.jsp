@@ -1,4 +1,4 @@
-<%@page import="de.hwrberlin.creditcontrol.inquiry.InquiryServlet"%>
+<%@page import="de.hwrberlin.creditcontrol.inquiry.CreditApplicationServlet"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -8,6 +8,22 @@
 <link rel="stylesheet" href="style.css">
 <title>CreditControl</title>
 </head>
+
+<script type="text/javascript">
+
+const kreditbetrag = document.getElementById('kreditbetrag');
+const laufzeit = document.getElementById('laufzeit');
+
+const rate = document.getElementById('rate');
+
+input.addEventListener('change', updateValue);
+
+function updateValue(e, f) {
+  rate.textContent = e.target.value / f.target.value;
+}
+
+</script>
+
 <body>
 
 
@@ -21,7 +37,6 @@
 		</div>
 		<div class="lo">
 			<button class="button_profil" onclick="window.location.href='website_after_login.jsp';">
-				<img src="image/profil.png" align="left">
 				<p>Zurück</p>
 			</button>
 		</div>
@@ -45,13 +60,13 @@
 			</tr>
 			<tr>
 				<td><label class="label_antrag">Kreditbetrag</label></td>
-				<td><input class="inputstyle" form="my_form" type="text"
-					name="form_kreditbetrag" required></input></td>
+				<td><input class="inputstyle" form="my_form" type="number"
+					name="form_kreditbetrag" id="kreditbetrag" min="1000" max="100000" step="1" required></input></td>
 			</tr>
 			<tr>
 				<td><label class="label_antrag">Laufzeit</label></td>
-				<td><input class="inputstyle" form="my_form" type="text"
-					name="form_laufzeit" required></input></td>
+				<td><input class="inputstyle" form="my_form" type="number"
+					name="form_laufzeit" id="laufzeit" min="6" max="120" step="1" required></input></td>
 			</tr>
 			<tr>
 				<td><label class="label_antrag">Arbeitgeber</label></td>
@@ -64,7 +79,7 @@
 					style="position: relative; left: 50px" form="my_form"
 					name="form_verhaeltnis">
 						<option class="select_option" selected>Bitte wählen:</option>
-						<option class="select_option" value="angestellter">Angestelle/r</option>
+						<option class="select_option" value="angestellter">Angestellte/r</option>
 						<option class="select_option" value="arbeiter">Arbeiter/in</option>
 						<option class="select_option" value="arbeitslos">Arbeitslos</option>
 						<option class="select_option" value="beamter">Beamte/r</option>
@@ -100,8 +115,8 @@
 			<div id="kreditRechner"
 				style="position: absolute; bottom: 250px; right: 450px; font-family: Advent Pro; font-size: 20px">
 
-				<p>Ratenhöhe/Monat:<p>
-				<p>Zinssatz p .a :</p>
+				<p id="rate">Ratenhöhe/Monat:<p>
+				<p id="zinssatz">Zinssatz p .a :</p>
 
 			</div>
 		</div>

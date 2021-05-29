@@ -1,6 +1,6 @@
 package de.hwrberlin.creditcontrol.login;
 
-public class LoginBean {
+public class UserBean {
 
 	private String username, password;
 

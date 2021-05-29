@@ -14,7 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import de.hwrberlin.creditcontrol.mysql.MySQL;
 
-public class InquiryServlet extends HttpServlet {
+public class CreditApplicationServlet extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
@@ -28,7 +28,9 @@ public class InquiryServlet extends HttpServlet {
 		String credit_value = request.getParameter("form_kreditbetrag");
 		String runtime = request.getParameter("form_laufzeit");
 
-		InquiryBean bean = new InquiryBean();
+		
+		
+		CreditApplicationBean bean = new CreditApplicationBean();
 		bean.setCreditUsage(credit_usage);
 		bean.setEmployer(employer);
 		bean.setEmploymentType(employment_type);
@@ -36,7 +38,7 @@ public class InquiryServlet extends HttpServlet {
 		bean.setCreditValue(credit_value);
 		bean.setRuntime(runtime);
 		request.getSession().setAttribute("bean2", bean);
-
+		
 		send(bean);
 		RequestDispatcher rd = request.getRequestDispatcher("website.jsp");
 		rd.forward(request, response);
@@ -47,7 +49,7 @@ public class InquiryServlet extends HttpServlet {
 		doPost(req, resp);
 	}
 
-	public void send(InquiryBean bean) {
+	public void send(CreditApplicationBean bean) {
 
 		Connection connection = null;
 		PreparedStatement st = null;

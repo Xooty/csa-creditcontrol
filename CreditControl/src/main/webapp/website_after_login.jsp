@@ -157,10 +157,10 @@ Laufzeit: variabel - max. 420 Monate
 
 		<div id="text_profil"
 			style="display: none; resize: none; width: 50%; height: 300px; position: absolute; left: 450px; top: 540px; font-family: Advent Pro; border: none; border-radius: 45px; font-size: 25px; text-align: center; background-color: transparent;">
-		<p>Nachname:</p>
-		<p>Vorname:</p>
-		<p>E-Mail-Adresse:</p>
-		<p>Benutzername:</p>
+		<p id="profil_nachname">Nachname:</p>
+		<p id="profil_vorname">Vorname:</p>
+		<p id="profil_email">E-Mail-Adresse:</p>
+		<p id="profil_benutzername">Benutzername:</p>
 		
 		</div>
 	</div>

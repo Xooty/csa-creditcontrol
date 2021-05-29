@@ -1,4 +1,4 @@
-<%@page import="de.hwrberlin.creditcontrol.inquiry.InquiryServlet"%>
+<%@page import="de.hwrberlin.creditcontrol.inquiry.CreditApplicationServlet"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -21,7 +21,6 @@
 		</div>
 		<div class="lo">
 			<button class="button_profil" onclick="window.location.href='website_after_login.jsp';">
-				<img src="image/profil.png" align="left">
 				<p>Zurück</p>
 			</button>
 		</div>
@@ -45,13 +44,13 @@
 			</tr>
 			<tr>
 				<td><label class="label_antrag">Kreditbetrag</label></td>
-				<td><input class="inputstyle" form="my_form" type="text"
-					name="form_kreditbetrag" required></input></td>
+				<td><input class="inputstyle" form="my_form" type="number"
+					name="form_kreditbetrag" min="50000" max="750000" step="1" required></input></td>
 			</tr>
 			<tr>
 				<td><label class="label_antrag">Laufzeit</label></td>
-				<td><input class="inputstyle" form="my_form" type="text"
-					name="form_laufzeit" required></input></td>
+				<td><input class="inputstyle" form="my_form" type="number"
+					name="form_laufzeit" min="60" max="420" step="1" required></input></td>
 			</tr>
 			<tr>
 				<td><label class="label_antrag">Arbeitgeber</label></td>
@@ -64,7 +63,7 @@
 					style="position: relative; left: 50px" form="my_form"
 					name="form_verhaeltnis">
 						<option class="select_option" selected>Bitte wählen:</option>
-						<option class="select_option" value="angestellter">Angestelle/r</option>
+						<option class="select_option" value="angestellter">Angestellte/r</option>
 						<option class="select_option" value="arbeiter">Arbeiter/in</option>
 						<option class="select_option" value="arbeitslos">Arbeitslos</option>
 						<option class="select_option" value="beamter">Beamte/r</option>

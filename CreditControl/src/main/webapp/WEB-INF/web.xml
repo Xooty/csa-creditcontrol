@@ -17,11 +17,11 @@
 	</servlet-mapping>
 	<servlet>
 		<servlet-name>s2</servlet-name>
-		<servlet-class>de.hwrberlin.creditcontrol.inquiry.InquiryServlet</servlet-class>
+		<servlet-class>de.hwrberlin.creditcontrol.inquiry.CreditApplicationServlet</servlet-class>
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>s2</servlet-name>
-		<url-pattern>/InquiryServlet</url-pattern>
+		<url-pattern>/CreditApplicationServlet</url-pattern>
 	</servlet-mapping>
 	<servlet>
 		<servlet-name>s3</servlet-name>
@@ -29,7 +29,15 @@
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>s3</servlet-name>
-		<url-pattern>/logout</url-pattern>
+		<url-pattern>/UserLogoutServlet</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<servlet-name>s4</servlet-name>
+		<servlet-class>de.hwrberlin.creditcontrol.register.UserRegisterServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>s4</servlet-name>
+		<url-pattern>/UserRegisterServlet</url-pattern>
 	</servlet-mapping>
 
 	<session-config>
