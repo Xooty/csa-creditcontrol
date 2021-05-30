@@ -104,6 +104,9 @@
 		buttonSup.style.display = "none";
 	}
 
+	function clear(){
+		var textareaSup = document.getElementById("text_area_sup").value = "";
+	}
 </script>
 
 </head>
@@ -180,6 +183,8 @@
 			Kreditsumme Minimum: 1.000€
 			Kreditsumme Maximum: 100.000€
 			Laufzeit: variabel – max. 120 Monate
+			Effektiver Jahreszins: 10 % p. a
+			Gebunder Sollzinsatz: 3,99 % p. a
 </textarea>
 		</div>
 		<div>
@@ -194,6 +199,8 @@ Mindestalter: 18 Jahre
 Kreditsumme Minimum: 50.000€
 Kreditsumme Maximum: 750.000€
 Laufzeit: min. 60 Monate - max. 420 Monate
+Effektiver Jahreszins: 1,2 % p. a
+Gebunder Sollzinsatz: 1,15 % p. a
 </textarea>
 		</div>
 		
