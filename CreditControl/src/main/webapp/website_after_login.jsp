@@ -184,7 +184,7 @@
 			Kreditsumme Maximum: 100.000€
 			Laufzeit: variabel – max. 120 Monate
 			Effektiver Jahreszins: 10 % p. a
-			Gebunder Sollzinsatz: 3,99 % p. a
+			Gebundener Sollzinsatz: 3,99 % p. a
 </textarea>
 		</div>
 		<div>
@@ -200,7 +200,7 @@ Kreditsumme Minimum: 50.000€
 Kreditsumme Maximum: 750.000€
 Laufzeit: min. 60 Monate - max. 420 Monate
 Effektiver Jahreszins: 1,2 % p. a
-Gebunder Sollzinsatz: 1,15 % p. a
+Gebundener Sollzinsatz: 1,15 % p. a
 </textarea>
 		</div>
 		
