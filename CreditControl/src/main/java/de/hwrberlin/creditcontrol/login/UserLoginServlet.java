@@ -2,6 +2,7 @@ package de.hwrberlin.creditcontrol.login;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.security.NoSuchAlgorithmException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -27,13 +28,10 @@ public class UserLoginServlet extends HttpServlet {
 		
 		PrintWriter printWriter = response.getWriter();
 
-		UserBean bean = new UserBean();
-		bean.setUsername(name);
-		bean.setPassword(password);
-		request.getSession().setAttribute("login", bean);
-		request.getSession().setAttribute("username", name);
-
-		if (validate(bean)) {
+		UserBean bean = validate(name, password);
+		
+		if (bean != null) {
+			request.getSession().setAttribute("login", bean);
 			RequestDispatcher rd = request.getRequestDispatcher("website_after_login.jsp");
 			rd.forward(request, response);
 		} else {
@@ -48,32 +46,56 @@ public class UserLoginServlet extends HttpServlet {
 		doPost(req, resp);
 	}
 
-	public boolean validate(UserBean bean) {
+	public UserBean validate(String username, String password) {
+		
+		MySQL.initTables();
 
 		Connection connection = null;
 		PreparedStatement st = null;
 		ResultSet rs = null;
-
-		boolean valid = false;
+		
+		UserBean bean = new UserBean();
+		bean.setUsername(username);
+		bean.setPassword(password);
+		
+		int customer_id = 0;
 
 		try {
 			connection = MySQL.openConnection();
 			st = connection.prepareStatement("SELECT * FROM users WHERE user_name = ? AND user_password = ?");
 			st.setString(1, bean.getUsername());
-			st.setString(2, bean.getPassword());
+			st.setString(2, MySQL.toHexString(MySQL.getSHA(bean.getPassword())));
 
 			rs = st.executeQuery();
 
 			if (rs.first()) {
-				valid = true;
+				customer_id = rs.getInt("customer_id");
+			} else {
+				return null;
 			}
 
+			st.close();
+			rs.close();
+			
+			st = connection.prepareStatement("SELECT * FROM customers WHERE customer_id = ?");
+			st.setInt(1, customer_id);
+
+			rs = st.executeQuery();
+			
+			if (rs.first()) {
+				bean.setFirstName(rs.getString("first_name"));
+				bean.setLastName(rs.getString("last_name"));
+				bean.setEmail(rs.getString("email"));
+			}
+			
 			MySQL.closeRessources(rs, st, connection);
 
 		} catch (SQLException e) {
 			e.printStackTrace();
+		} catch (NoSuchAlgorithmException e) {
+			e.printStackTrace();
 		}
 
-		return valid;
+		return bean;
 	}
 }

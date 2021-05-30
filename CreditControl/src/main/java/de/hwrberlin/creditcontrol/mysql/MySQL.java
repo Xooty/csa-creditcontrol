@@ -144,7 +144,7 @@ public class MySQL {
 		}
 	}
 
-	public void closeConnection(Connection connection) {
+	public static void closeConnection(Connection connection) {
 		try {
 			connection.close();
 		} catch (SQLException e) {
@@ -154,7 +154,7 @@ public class MySQL {
 
 	// Methode zum Automatischen erstellen der Datenbank und der Tabellen mit Dummy
 	// Werten
-	public void initTables() {
+	public static void initTables() {
 
 		Connection connection = null;
 		PreparedStatement st = null;
@@ -174,7 +174,7 @@ public class MySQL {
 			st = connection.prepareStatement("CREATE DATABASE IF NOT EXISTS " + database);
 			st.executeUpdate();
 			st.close();
-			this.closeConnection(connection);
+			closeConnection(connection);
 
 			connection = openConnection();
 			st = connection.prepareStatement(
@@ -198,12 +198,17 @@ public class MySQL {
 			st.close();
 
 			st = connection.prepareStatement(
-					"CREATE TABLE IF NOT EXISTS inquiries (inquiry_id INTEGER AUTO_INCREMENT PRIMARY KEY, credit_id INTEGER, employee_id INTEGER, customer_id INTEGER, verified BOOLEAN)");
+					"CREATE TABLE IF NOT EXISTS credit_applications_private (credit_application_id INTEGER AUTO_INCREMENT PRIMARY KEY, credit_id INTEGER, employee_id INTEGER, customer_id INTEGER, verified BOOLEAN, credit_usage VARCHAR(50), credit_value INTEGER, runtime INTEGER, employer VARCHAR(50), employment_type VARCHAR(50), gross_income VARCHAR(50))");
+			st.executeUpdate();
+			st.close();
+			
+			st = connection.prepareStatement(
+					"CREATE TABLE IF NOT EXISTS credit_applications_mortage (credit_application_id INTEGER AUTO_INCREMENT PRIMARY KEY, credit_id INTEGER, employee_id INTEGER, customer_id INTEGER, verified BOOLEAN, property_type VARCHAR(50), credit_value INTEGER, runtime INTEGER, employer VARCHAR(50), employment_type VARCHAR(50), gross_income VARCHAR(50), address VARCHAR(100))");
 			st.executeUpdate();
 			st.close();
 
 			st = connection.prepareStatement(
-					"CREATE TABLE IF NOT EXISTS customers (customer_id INTEGER AUTO_INCREMENT PRIMARY KEY, salutation VARCHAR(10), first_name VARCHAR(50), surname VARCHAR(50), birth_date VARCHAR(50), address VARCHAR(500), email VARCHAR(200), phone VARCHAR(50))");
+					"CREATE TABLE IF NOT EXISTS customers (customer_id INTEGER AUTO_INCREMENT PRIMARY KEY, salutation VARCHAR(10), first_name VARCHAR(50), last_name VARCHAR(50), birth_date VARCHAR(50), address VARCHAR(500), email VARCHAR(200), phone VARCHAR(50))");
 			st.executeUpdate();
 			st.close();
 
@@ -214,6 +219,11 @@ public class MySQL {
 
 			st = connection.prepareStatement(
 					"CREATE TABLE IF NOT EXISTS customers_business (customer_id INTEGER, verified BOOLEAN, company_name VARCHAR(200))");
+			st.executeUpdate();
+			st.close();
+			
+			st = connection.prepareStatement(
+					"CREATE TABLE IF NOT EXISTS users (user_id INTEGER AUTO_INCREMENT PRIMARY KEY, customer_id INTEGER, user_name VARCHAR(50), user_password VARCHAR(250), permission VARCHAR(50))");
 			st.executeUpdate();
 			st.close();
 		} catch (SQLException e) {

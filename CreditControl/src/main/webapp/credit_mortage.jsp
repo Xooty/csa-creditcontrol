@@ -1,4 +1,4 @@
-<%@page import="de.hwrberlin.creditcontrol.inquiry.CreditApplicationServlet"%>
+<%@page import="de.hwrberlin.creditcontrol.creditapplications.CreditApplicationServlet"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -94,19 +94,12 @@
 		</table>
 
 		<div class="lo">
-			<form action="InquiryServlet" method="post" id="my_form">
+			<form action="CreditMortageApplicationServlet" method="post" id="my_form">
 				<button class="button_antrag" type="submit">
 					<img src="image/häkchen.ico" align="left">
 					<p>Antrag abschicken</p>
 				</button>
 			</form>
-			
-		<div id="kreditRechner" style="position: absolute;bottom:90px;right: 470px; font-family: Advent Pro;font-size: 20px">
-		
-			<p>Ratenhöhe/Monat:<p>
-			<p>Zinssatz p .a :</p>
-		
-		</div>
 		</div>
 	</div>
 </body>

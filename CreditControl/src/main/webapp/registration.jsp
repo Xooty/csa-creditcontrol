@@ -16,10 +16,10 @@
 			<p style="position: absolute; bottom: 74%; right: 18%; width: 50%; font-size: 17px">Bitte legen Sie ein Konto an:</p>
 		<form action="UserRegisterServlet" method="post">
 			<p style="position: absolute; bottom: 64%; right: 64%;">Nachname</p>
-			<input type="text" name="nachname"				
+			<input type="text" name="last_name"				
 				style="border-radius: 3px; border: none;width: 150px;height: 25px; position: absolute; bottom:61%;right: 54%;" required>
 			<p style="position: absolute; bottom: 64%; right: 24%;">Vorname</p>
-			<input type="text" name="vorname"				
+			<input type="text" name="first_name"				
 				style="border-radius: 3px; border: none;width: 150px;height: 25px; position: absolute; bottom:61%;right: 14%;" required>
 			<p style="position: absolute; bottom: 49%; right: 39%;">E-Mail-Adresse</p>
 			<input type="email" name="email"				

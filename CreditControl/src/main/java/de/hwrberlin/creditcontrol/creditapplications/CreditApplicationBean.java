@@ -1,8 +1,9 @@
-package de.hwrberlin.creditcontrol.inquiry;
+package de.hwrberlin.creditcontrol.creditapplications;
 
 public class CreditApplicationBean {
 
-	private String credit_usage, employer, employment_type, gross_income, credit_value, runtime, mortage_type, address;
+	private String credit_usage, employer, employment_type, gross_income, credit_value, runtime, propterty_type, address;
+	private int customer_id;
 
 	public String getCreditUsage() {
 		return credit_usage;
@@ -52,12 +53,12 @@ public class CreditApplicationBean {
 		this.runtime = runtime;
 	}
 	
-	public String getMortageType() {
-		return this.mortage_type;
+	public String getPropertyType() {
+		return this.propterty_type;
 	}
 	
-	public void setMortageType(String mortage_type) {
-		this.mortage_type = mortage_type;
+	public void setPropertyType(String property_type) {
+		this.propterty_type = property_type;
 	}
 	
 	public String getAddress() {
@@ -66,5 +67,13 @@ public class CreditApplicationBean {
 	
 	public void setAddress(String address) {
 		this.address = address;
+	}
+	
+	public int getCustomerID() {
+		return this.customer_id;
+	}
+	
+	public void setCustomerID(int customer_id) {
+		this.customer_id = customer_id;
 	}
 }

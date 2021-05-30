@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ page import="de.hwrberlin.creditcontrol.login.UserBean" %>
+<jsp:useBean id="UserBean" class="de.hwrberlin.creditcontrol.login.UserBean" scope="session"/>
+    <jsp:setProperty name="UserBean" property="*"/>
 <!DOCTYPE html>
 <html>
 <head>
@@ -77,7 +80,7 @@
 		style="position: absolute; left: 1705px; top: 90px; font-family: Advent Pro;">
 		<p>
 			Username:
-			<%=request.getSession().getAttribute("username")%></p>
+			<%= UserBean.getUsername() %></p>
 	</div>
 	<div class="logo_container">
 		<div class="lo">
@@ -94,7 +97,7 @@
 			<div
 				style="position: absolute; bottom: -45px; left: 110px; font-family: Advent Pro;">
 				<a href="website.jsp"
-					onClick="<%request.getSession().invalidate();%>">Logout</a>
+					onClick="<%%>">Logout</a>
 			</div>
 		</div>
 	</div>
@@ -157,10 +160,10 @@ Laufzeit: variabel - max. 420 Monate
 
 		<div id="text_profil"
 			style="display: none; resize: none; width: 50%; height: 300px; position: absolute; left: 450px; top: 540px; font-family: Advent Pro; border: none; border-radius: 45px; font-size: 25px; text-align: center; background-color: transparent;">
-		<p id="profil_nachname">Nachname:</p>
-		<p id="profil_vorname">Vorname:</p>
-		<p id="profil_email">E-Mail-Adresse:</p>
-		<p id="profil_benutzername">Benutzername:</p>
+		<p>Benutzername: <%= UserBean.getUsername() %></p>
+		<p>Vorname: <%= UserBean.getFirstName() %></p>
+		<p>Nachname: <%= UserBean.getLastName() %></p>
+		<p>E-Mail-Adresse: <%= UserBean.getEmail() %></p>
 		
 		</div>
 	</div>

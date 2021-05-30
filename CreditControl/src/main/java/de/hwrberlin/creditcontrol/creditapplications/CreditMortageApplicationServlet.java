@@ -1,4 +1,4 @@
-package de.hwrberlin.creditcontrol.inquiry;
+package de.hwrberlin.creditcontrol.creditapplications;
 
 import java.io.IOException;
 import java.sql.Connection;
@@ -14,7 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import de.hwrberlin.creditcontrol.mysql.MySQL;
 
-public class CreditApplicationServlet extends HttpServlet {
+public class CreditMortageApplicationServlet extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
@@ -37,10 +37,10 @@ public class CreditApplicationServlet extends HttpServlet {
 		bean.setGrossIncome(gross_income);
 		bean.setCreditValue(credit_value);
 		bean.setRuntime(runtime);
-		request.getSession().setAttribute("bean2", bean);
+		request.getSession().setAttribute("credit_application_mortage_bean", bean);
 		
 		send(bean);
-		RequestDispatcher rd = request.getRequestDispatcher("website.jsp");
+		RequestDispatcher rd = request.getRequestDispatcher("website_after_login.jsp");
 		rd.forward(request, response);
 	}
 
@@ -57,18 +57,18 @@ public class CreditApplicationServlet extends HttpServlet {
 		try {
 			connection = MySQL.openConnection();
 			
-			st = connection.prepareStatement("INSERT INTO inquiries (credit_id, employee_id, customer_id, verified, credit_usage, credit_value, runtime, employer, employment_type, gross_income) VALUES (?,?,?,?,?,?,?,?,?,?)");
+			st = connection.prepareStatement("INSERT INTO credit_applications_mortage (employee_id, customer_id, verified, property_type, credit_value, runtime, employer, employment_type, gross_income, address) VALUES (?,?,?,?,?,?,?,?,?,?)");
 			
-			st.setInt(1, 1);
-			st.setInt(2, 2);
-			st.setInt(3, 4);
-			st.setBoolean(4, false);
-			st.setString(5, bean.getCreditUsage());
-			st.setDouble(6, Double.valueOf(bean.getCreditValue()));
-			st.setInt(7, Integer.valueOf(bean.getRuntime()));
-			st.setString(8, bean.getEmployer());
-			st.setString(9, bean.getEmploymentType());
-			st.setString(10, bean.getGrossIncome());
+			st.setInt(1, 0);
+			st.setInt(2, 4);
+			st.setBoolean(3, false);
+			st.setString(4, bean.getPropertyType());
+			st.setDouble(5, Double.valueOf(bean.getCreditValue()));
+			st.setInt(6, Integer.valueOf(bean.getRuntime()));
+			st.setString(7, bean.getEmployer());
+			st.setString(8, bean.getEmploymentType());
+			st.setString(9, bean.getGrossIncome());
+			st.setString(10, bean.getAddress());
 			
 			st.executeUpdate();
 

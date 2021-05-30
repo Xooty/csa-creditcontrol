@@ -1,4 +1,4 @@
-<%@page import="de.hwrberlin.creditcontrol.inquiry.CreditApplicationServlet"%>
+<%@page import="de.hwrberlin.creditcontrol.creditapplications.CreditApplicationServlet"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -8,22 +8,6 @@
 <link rel="stylesheet" href="style.css">
 <title>CreditControl</title>
 </head>
-
-<script type="text/javascript">
-
-const kreditbetrag = document.getElementById('kreditbetrag');
-const laufzeit = document.getElementById('laufzeit');
-
-const rate = document.getElementById('rate');
-
-input.addEventListener('change', updateValue);
-
-function updateValue(e, f) {
-  rate.textContent = e.target.value / f.target.value;
-}
-
-</script>
-
 <body>
 
 
@@ -36,7 +20,7 @@ function updateValue(e, f) {
 			<img src="image/logo_ppt.JPG" width="65%">
 		</div>
 		<div class="lo">
-			<button class="button_profil" onclick="window.location.href='website_after_login.jsp';">
+			<button class="button_profil" onclick="window.location.href='website_after_login.jsp'; <% request.getSession().setAttribute("username", request.getSession().getAttribute("user_name")); %>">
 				<p>Zurück</p>
 			</button>
 		</div>
@@ -105,20 +89,12 @@ function updateValue(e, f) {
 		</table>
 
 		<div class="lo">
-			<form action="InquiryServlet" method="post" id="my_form">
+			<form action="CreditApplicationServlet" method="post" id="my_form">
 				<button class="button_antrag" type="submit">
 					<img src="image/häkchen.ico" align="left">
 					<p>Antrag abschicken</p>
 				</button>
 			</form>
-
-			<div id="kreditRechner"
-				style="position: absolute; bottom: 250px; right: 450px; font-family: Advent Pro; font-size: 20px">
-
-				<p id="rate">Ratenhöhe/Monat:<p>
-				<p id="zinssatz">Zinssatz p .a :</p>
-
-			</div>
 		</div>
 	</div>
 </body>

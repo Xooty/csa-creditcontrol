@@ -17,7 +17,7 @@
 	</servlet-mapping>
 	<servlet>
 		<servlet-name>s2</servlet-name>
-		<servlet-class>de.hwrberlin.creditcontrol.inquiry.CreditApplicationServlet</servlet-class>
+		<servlet-class>de.hwrberlin.creditcontrol.creditapplications.CreditApplicationServlet</servlet-class>
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>s2</servlet-name>
@@ -38,6 +38,14 @@
 	<servlet-mapping>
 		<servlet-name>s4</servlet-name>
 		<url-pattern>/UserRegisterServlet</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<servlet-name>s5</servlet-name>
+		<servlet-class>de.hwrberlin.creditcontrol.creditapplications.CreditMortageApplicationServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>s5</servlet-name>
+		<url-pattern>/CreditMortageApplicationServlet</url-pattern>
 	</servlet-mapping>
 
 	<session-config>
