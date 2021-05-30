@@ -113,6 +113,8 @@ Mindestalter: 18 Jahre
 Kreditsumme Minimum: 1.000€
 Kreditsumme Maximum: 100.000€
 Laufzeit: variabel - max. 120 Monate
+Effektiver Jahreszins: 10 % p. a
+Gebundener Sollzinsatz: 3,99 % p. a
 </textarea>
 			<textarea id="text_area_bau"
 				style="display: none; resize: none; width: 50%; height: 300px; position: relative; left: 450px; top: 50px; font-family: Advent Pro; border: none; border-radius: 45px; font-size: 25px;text-align: center;background-color: transparent;" readonly="readonly">Eine Baufinanzierung bezeichnet die Anschaffung einer Immobilie auf Kredit. Dabei kann nicht nur die Immobilie selbst finanziert werden, sondern auch dazugehörige Grundstücke und Nebenanlagen.
@@ -123,6 +125,8 @@ Mindestalter: 18 Jahre
 Kreditsumme Minimum: 50.000€
 Kreditsumme Maximum: 750.000€
 Laufzeit: min. 60 Monate - max. 420 Monate
+Effektiver Jahreszins: 1,2 % p. a
+Gebundener Sollzinsatz: 1,15 % p. a
 </textarea>	
 		
 		</div>
