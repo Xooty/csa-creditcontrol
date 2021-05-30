@@ -26,6 +26,7 @@
 		</div>
 	</div>
 
+	<!-- Maske mit den notwendigen Eingabefelder für den Kreditantrag "Baufinanzierung" -->
 	<div class="layoutstyle">
 		<div class="layout_container" style="height: 450px">
 			<div class="layout"></div>
@@ -43,12 +44,12 @@
 					name="form_verwendungszweck" required></input></td>
 			</tr>
 			<tr>
-				<td><label class="label_antrag">Kreditbetrag</label></td>
+				<td><label class="label_antrag">Kreditbetrag (in €)</label></td>
 				<td><input class="inputstyle" form="my_form" type="number"
 					name="form_kreditbetrag" min="50000" max="750000" step="1" required></input></td>
 			</tr>
 			<tr>
-				<td><label class="label_antrag">Laufzeit</label></td>
+				<td><label class="label_antrag">Laufzeit (in Monaten)</label></td>
 				<td><input class="inputstyle" form="my_form" type="number"
 					name="form_laufzeit" min="60" max="420" step="1" required></input></td>
 			</tr>
@@ -73,7 +74,7 @@
 				</select></td>
 			</tr>
 			<tr>
-				<td><label class="label_antrag">Bruttoeinkommen</label></td>
+				<td><label class="label_antrag">Bruttoeinkommen (in €)</label></td>
 				<td><select class="select_antrag"
 					style="position: relative; left: 50px" form="my_form"
 					name="form_bruttoeinkommen">
@@ -95,6 +96,7 @@
 
 		<div class="lo">
 			<form action="CreditMortageApplicationServlet" method="post" id="my_form">
+				<!-- Button zum Antrag abschicken -->
 				<button class="button_antrag" type="submit">
 					<img src="image/häkchen.ico" align="left">
 					<p>Antrag abschicken</p>

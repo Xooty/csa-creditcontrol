@@ -8,6 +8,7 @@
 <title>CreditControl</title>
 
 <script>
+//Funktion für das Drop-Down Menü, um auf die Privatfinanzierungsseite weitergeleitet zu werden bzw. die Textarea mit den Voraussetzungen als Anzeige erhalten
 function changeFuncPriv() {
 
 	var selectBoxPriv = document.getElementById("box_priv");
@@ -30,6 +31,7 @@ function changeFuncPriv() {
 
 }
 
+//Funktion für das Drop-Down Menü, um auf die Baufinanzierung weitergeleitet zu werden bzw. die Textarea mit den Voraussetzungen als Anzeige erhalten
 function changeFuncBau() {
 
 	var selectBoxBau = document.getElementById("box_bau");
@@ -64,9 +66,10 @@ function changeFuncBau() {
 		<div class="lo">
 			<img src="image/logo_ppt.JPG" width="65%">
 		</div>
-		<div class="lo">
-			<button class="button_profil"
-				onclick="window.location.href='loginform.jsp';">
+		<div class="lo">	
+			<!--Loginbutton -->							
+			<button class="button_profil"				
+				onclick="window.location.href='loginform.jsp';">			
 				<img src="image/profil.png" align="left">
 				<p>Anmelden</p>
 			</button>
@@ -76,25 +79,25 @@ function changeFuncBau() {
 		<div class="con">
 			<div class="con_style">Privatkredit</div>
 			<div style="height: 15px;"></div>
+			<!--Drop-Down Menü Privatfinanzierung -->		
 			<select class="select_wrapper" id="box_priv"
 				onchange="changeFuncPriv();">
 				<option class="select_option" value="0" selected disabled hidden>Bitte wählen:</option>
 				<option class="select_option" value="1" id="select_priv1">Voraussetzung</option>
 				<option class="select_option" value="2" id="select_priv2">Kredit
 					beantragen</option>
-				<option class="select_option" value="3" id="select_priv3">Support</option>
 			</select>
 		</div>
 		<div class="con">
 			<div class="con_style">Baufinanzierung</div>
 			<div style="height: 15px;"></div>
+			<!--Drop-Down Menü Baufinanzierung -->		
 			<select class="select_wrapper" id="box_bau"
 				onchange="changeFuncBau();">
 				<option class="select_option" value="0" selected disabled hidden>Bitte wählen:</option>
 				<option class="select_option" value="1" id="select_bau1">Voraussetzung</option>
 				<option class="select_option" value="2" id="select_bau2">Kredit
 					beantragen</option>
-				<option class="select_option" value="3" id="select_bau3">Support</option>
 			</select>
 		</div>
 	</div>
@@ -119,7 +122,7 @@ Voraussetzung für die Aufnahme einer Baufinanzierung:
 Mindestalter: 18 Jahre
 Kreditsumme Minimum: 50.000€
 Kreditsumme Maximum: 750.000€
-Laufzeit: variabel - max. 420 Monate
+Laufzeit: min. 60 Monate - max. 420 Monate
 </textarea>	
 		
 		</div>

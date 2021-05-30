@@ -8,6 +8,7 @@
 <title>CreditControl</title>
 </head>
 <body>
+	<!-- Maske für die Registrierung eines Accounts-->
 	<img src="image/tree.png" width="100%" style="opacity: 0.2;">	
 	<div class="loginbox" style="position: absolute; width: 500px; height:500px;">
 		<img src="image/profil.png"
