@@ -82,7 +82,7 @@ function changeFuncBau() {
 			<!--Drop-Down Menü Privatfinanzierung -->		
 			<select class="select_wrapper" id="box_priv"
 				onchange="changeFuncPriv();">
-				<option class="select_option" value="0" selected disabled hidden>Bitte wählen:</option>
+				<option class="select_option" value="0" selected>Bitte wählen:</option>
 				<option class="select_option" value="1" id="select_priv1">Voraussetzung</option>
 				<option class="select_option" value="2" id="select_priv2">Kredit
 					beantragen</option>
@@ -94,7 +94,7 @@ function changeFuncBau() {
 			<!--Drop-Down Menü Baufinanzierung -->		
 			<select class="select_wrapper" id="box_bau"
 				onchange="changeFuncBau();">
-				<option class="select_option" value="0" selected disabled hidden>Bitte wählen:</option>
+				<option class="select_option" value="0" selected>Bitte wählen:</option>
 				<option class="select_option" value="1" id="select_bau1">Voraussetzung</option>
 				<option class="select_option" value="2" id="select_bau2">Kredit
 					beantragen</option>

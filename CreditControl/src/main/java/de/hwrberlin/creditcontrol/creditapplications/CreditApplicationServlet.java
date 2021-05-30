@@ -39,8 +39,6 @@ public class CreditApplicationServlet extends HttpServlet {
 		
 		request.getSession().setAttribute("credit_application_private_bean", bean);
 
-		System.out.println(((UserBean) request.getSession().getAttribute("login")).getUsername());
-		
 		send(bean);
 		RequestDispatcher rd = request.getRequestDispatcher("website_after_login.jsp");
 		rd.forward(request, response);

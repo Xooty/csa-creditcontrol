@@ -1,5 +1,7 @@
 package de.hwrberlin.creditcontrol.mysql;
 
+import java.io.IOException;
+import java.io.InputStream;
 import java.math.BigInteger;
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
@@ -9,96 +11,28 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Properties;
 
 public class MySQL {
 
-	public static String host = "ni5852421-1.web03.nitrado.hosting";
-	public static String database = "ni5852421_1sql1";
-	public static String user = "ni5852421_1sql1";
-	public static String password = "&32asdZTG!";
-	public static String port = "3306";
-
-//	private File file;
-
-	private User user_application;
-
-	// Im Konstruktor wird �berpr�ft, ob die Datei mysql.txt vorhanden ist und
-	// wird zur Not mit den Daten wieder gef�llt
-	// Des Weiteren werden die n�tigen Tabellen mit Dummy Werten erstellt
-//	public MySQL(String path) { // Path f�r Desktop: System.getProperty("user.home") + /Desktop/CreditControl/mysql.txt"
-//
-//		this.file = new File(path);
-//		if (!this.file.exists()) {
-//			
-//			this.file.mkdir(); 
-//			this.file = new File(path + "mysql.txt");
-//			
-//			PrintWriter writer = null;
-//			try {
-//				this.file.createNewFile();
-//				
-//				writer = new PrintWriter(new FileOutputStream(this.file, true));
-//
-//				String separator = System.getProperty("line.separator");
-//				
-//				writer.write("host: localhost" + separator);
-//				writer.write("database: creditcontrol" + separator);
-//				writer.write("user: root" + separator);
-//				writer.write("password: 12345" + separator);
-//				writer.write("port: 3306");
-//			} catch (IOException e) {
-//				e.printStackTrace();
-//			} finally {
-//				if (writer != null) {
-//					writer.flush();
-//					writer.close();
-//		        }
-//			}
-//		}
-//		
-//		this.file = new File(path + "mysql.txt");
-//		
-//		BufferedReader reader;
-//		
-//		try {
-//			reader = new BufferedReader(new FileReader(this.file));
-//			
-//			String line = reader.readLine();
-//			
-//			while (line != null) {
-//				String[] args = line.split(": ");
-//
-//				switch (args[0]) {
-//					case "host": this.host = args[1];
-//					case "database": this.database = args[1];
-//					case "user": this.user = args[1];
-//					case "password": this.password = args[1];
-//					case "port": this.port = args[1];
-//				}
-//				
-//				line = reader.readLine();
-//			}
-//			reader.close();
-//		} catch (IOException e) {
-//			e.printStackTrace();
-//		}
-//		
-//		this.initTables();
-//	}
-
-	public MySQL() {
-	}
-
-	public User setUser(User user) {
-		this.user_application = user;
-		return user;
-	}
-
-	public User getUser() {
-		return this.user_application;
-	}
+	public MySQL() { }
 
 	public static Connection openConnection() {
+		
+		InputStream inputStream = MySQL.class.getResourceAsStream("/de/hwrberlin/creditcontrol/config.properties");
+		Properties props = new Properties();
+		try {
+			props.load(inputStream);
+		} catch (IOException e1) {
+			e1.printStackTrace();
+		}
+		
+		String host = props.getProperty("host", "localhost");
+		String database = props.getProperty("database", "creditcontrol");
+		String user = props.getProperty("user", "root");
+		String password = props.getProperty("password", "12345");
+		String port = props.getProperty("port", "3306");
+		
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
 			Connection conn = DriverManager.getConnection("jdbc:mysql://" + host + ":" + port + "/" + database, user,
@@ -155,7 +89,21 @@ public class MySQL {
 	// Methode zum Automatischen erstellen der Datenbank und der Tabellen mit Dummy
 	// Werten
 	public static void initTables() {
-
+		
+		InputStream inputStream = MySQL.class.getResourceAsStream("/de/hwrberlin/creditcontrol/config.properties");
+		Properties props = new Properties();
+		try {
+			props.load(inputStream);
+		} catch (IOException e1) {
+			e1.printStackTrace();
+		}
+		
+		String host = props.getProperty("host", "localhost");
+		String database = props.getProperty("database", "creditcontrol");
+		String user = props.getProperty("user", "root");
+		String password = props.getProperty("password", "12345");
+		String port = props.getProperty("port", "3306");
+		
 		Connection connection = null;
 		PreparedStatement st = null;
 //		ResultSet rs = null;

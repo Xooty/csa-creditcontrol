@@ -112,9 +112,7 @@
 	<!--Zeigt den Namen des eingeloggten Users an -->		
 	<div
 		style="position: absolute; left: 1705px; top: 90px; font-family: Advent Pro;">
-		<p>
-			Username:
-			<%= UserBean.getUsername() %></p>
+		<p>Username: <%= UserBean.getUsername() %></p>
 	</div>
 	<div class="logo_container">
 		<div class="lo">
@@ -132,8 +130,7 @@
 			<!--Logout -->		
 			<div
 				style="position: absolute; bottom: -45px; left: 110px; font-family: Advent Pro;">
-				<a href="website.jsp"
-					onClick="<%%>">Logout</a>
+				<a href="website.jsp">Logout</a>
 			</div>
 		</div>
 	</div>
