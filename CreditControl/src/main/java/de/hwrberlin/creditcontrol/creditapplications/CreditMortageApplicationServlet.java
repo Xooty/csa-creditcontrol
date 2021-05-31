@@ -3,7 +3,6 @@ package de.hwrberlin.creditcontrol.creditapplications;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import javax.servlet.RequestDispatcher;
@@ -12,6 +11,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import de.hwrberlin.creditcontrol.login.UserBean;
 import de.hwrberlin.creditcontrol.mysql.MySQL;
 
 public class CreditMortageApplicationServlet extends HttpServlet {
@@ -21,23 +21,28 @@ public class CreditMortageApplicationServlet extends HttpServlet {
 		response.setContentType("text/html;  charset=UTF-8");
 		response.setCharacterEncoding("UTF-8");
 		
-		String credit_usage = request.getParameter("form_verwendungszweck");
+		String property_type = request.getParameter("form_verwendungszweck");
 		String employer = request.getParameter("form_arbeitgeber");
 		String employment_type = request.getParameter("form_verhaeltnis");
 		String gross_income = request.getParameter("form_bruttoeinkommen");
 		String credit_value = request.getParameter("form_kreditbetrag");
 		String runtime = request.getParameter("form_laufzeit");
-
-		
+		String address = request.getParameter("form_adresse");
 		
 		CreditApplicationBean bean = new CreditApplicationBean();
-		bean.setCreditUsage(credit_usage);
+		bean.setPropertyType(property_type);
 		bean.setEmployer(employer);
 		bean.setEmploymentType(employment_type);
 		bean.setGrossIncome(gross_income);
 		bean.setCreditValue(credit_value);
 		bean.setRuntime(runtime);
-		request.getSession().setAttribute("credit_application_mortage_bean", bean);
+		bean.setAddress(address);
+		if (request.getSession().getAttribute("customer_id") == null) {
+			RequestDispatcher rd = request.getRequestDispatcher("website.jsp");
+			rd.forward(request, response);
+			return;
+		}
+		bean.setCustomerID((int) request.getSession().getAttribute("customer_id"));
 		
 		send(bean);
 		RequestDispatcher rd = request.getRequestDispatcher("website_after_login.jsp");
@@ -60,7 +65,7 @@ public class CreditMortageApplicationServlet extends HttpServlet {
 			st = connection.prepareStatement("INSERT INTO credit_applications_mortage (employee_id, customer_id, verified, property_type, credit_value, runtime, employer, employment_type, gross_income, address) VALUES (?,?,?,?,?,?,?,?,?,?)");
 			
 			st.setInt(1, 0);
-			st.setInt(2, 4);
+			st.setInt(2, bean.getCustomerID());
 			st.setBoolean(3, false);
 			st.setString(4, bean.getPropertyType());
 			st.setDouble(5, Double.valueOf(bean.getCreditValue()));

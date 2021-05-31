@@ -103,10 +103,6 @@
 		textareaPriv.style.display = "none";
 		buttonSup.style.display = "none";
 	}
-
-	function clear(){
-		var textareaSup = document.getElementById("text_area_sup").value = "";
-	}
 </script>
 
 </head>
@@ -213,9 +209,9 @@ Gebundener Sollzinsatz: 1,15 % p. a
 		<div id="text_profil"
 			style="display: none; resize: none; width: 50%; height: 300px; position: absolute; left: 450px; top: 540px; font-family: Advent Pro; border: none; border-radius: 45px; font-size: 25px; text-align: center; background-color: transparent;">
 		<p>Benutzername: <%= UserBean.getUsername() %></p>
-		<p>Vorname: <%= UserBean.getFirstName() %></p>
-		<p>Nachname: <%= UserBean.getLastName() %></p>
-		<p>E-Mail-Adresse: <%= UserBean.getEmail() %></p>
+		<p>Vorname: <%= request.getSession().getAttribute("first_name") %></p>
+		<p>Nachname: <%= request.getSession().getAttribute("last_name") %></p>
+		<p>E-Mail-Adresse: <%= request.getSession().getAttribute("email") %></p>
 		
 		</div>
 	</div>

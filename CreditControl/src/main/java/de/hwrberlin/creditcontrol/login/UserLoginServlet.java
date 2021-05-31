@@ -28,10 +28,26 @@ public class UserLoginServlet extends HttpServlet {
 		
 		PrintWriter printWriter = response.getWriter();
 
+		// Falls keine Datenbankverbindung hergestellt werden kann, wird auf die loginform.jsp zurückgeleitet und eine Fehlermeldung ausgegeben
+		Connection conn = MySQL.openConnection(); 
+		if (conn == null) {
+			printWriter.println("Es konnte keine Verbindung mit der Datenbank hergestellt werden!");
+			RequestDispatcher rd = request.getRequestDispatcher("loginform.jsp");
+			rd.include(request, response);
+			return;
+		}
+		MySQL.closeConnection(conn);
+		
+		System.out.println(System.currentTimeMillis());
 		UserBean bean = validate(name, password);
+		System.out.println(System.currentTimeMillis());
 		
 		if (bean != null) {
 			request.getSession().setAttribute("login", bean);
+			request.getSession().setAttribute("customer_id", bean.getCustomerID());
+			request.getSession().setAttribute("first_name", bean.getFirstName());
+			request.getSession().setAttribute("last_name", bean.getLastName());
+			request.getSession().setAttribute("email", bean.getEmail());
 			RequestDispatcher rd = request.getRequestDispatcher("website_after_login.jsp");
 			rd.forward(request, response);
 		} else {
@@ -48,8 +64,6 @@ public class UserLoginServlet extends HttpServlet {
 
 	public UserBean validate(String username, String password) {
 		
-		MySQL.initTables();
-
 		Connection connection = null;
 		PreparedStatement st = null;
 		ResultSet rs = null;
@@ -65,11 +79,11 @@ public class UserLoginServlet extends HttpServlet {
 			st = connection.prepareStatement("SELECT * FROM users WHERE user_name = ? AND user_password = ?");
 			st.setString(1, bean.getUsername());
 			st.setString(2, MySQL.toHexString(MySQL.getSHA(bean.getPassword())));
-
 			rs = st.executeQuery();
 
 			if (rs.first()) {
 				customer_id = rs.getInt("customer_id");
+				bean.setCustomerID(customer_id);
 			} else {
 				return null;
 			}
@@ -83,7 +97,8 @@ public class UserLoginServlet extends HttpServlet {
 			rs = st.executeQuery();
 			
 			if (rs.first()) {
-				bean.setFirstName(rs.getString("first_name"));
+				String first_name = rs.getString("first_name");
+				bean.setFirstName(first_name);
 				bean.setLastName(rs.getString("last_name"));
 				bean.setEmail(rs.getString("email"));
 			}

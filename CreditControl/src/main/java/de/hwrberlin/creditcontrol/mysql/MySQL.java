@@ -86,8 +86,8 @@ public class MySQL {
 		}
 	}
 
-	// Methode zum Automatischen erstellen der Datenbank und der Tabellen mit Dummy
-	// Werten
+	// Methode zum Automatischen erstellen der Datenbank und der Tabellen
+	// Es werden die Tabellen wie im ER Modell beschrieben, erstellt
 	public static void initTables() {
 		
 		InputStream inputStream = MySQL.class.getResourceAsStream("/de/hwrberlin/creditcontrol/config.properties");
@@ -181,6 +181,7 @@ public class MySQL {
 		}
 	}
 
+	// Die folgenden beiden Methoden zum Verschlüsseln der Passwörter auf Basis von SHA256
 	public static byte[] getSHA(String input) throws NoSuchAlgorithmException {
 		// Static getInstance method is called with hashing SHA
 		MessageDigest md = MessageDigest.getInstance("SHA-256");

@@ -3,7 +3,6 @@ package de.hwrberlin.creditcontrol.creditapplications;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import javax.servlet.RequestDispatcher;
@@ -12,7 +11,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import de.hwrberlin.creditcontrol.login.UserBean;
 import de.hwrberlin.creditcontrol.mysql.MySQL;
 
 public class CreditApplicationServlet extends HttpServlet {
@@ -37,8 +35,14 @@ public class CreditApplicationServlet extends HttpServlet {
 		bean.setCreditValue(credit_value);
 		bean.setRuntime(runtime);
 		
-		request.getSession().setAttribute("credit_application_private_bean", bean);
-
+		if (request.getSession().getAttribute("customer_id") == null) {
+			RequestDispatcher rd = request.getRequestDispatcher("website.jsp");
+			rd.forward(request, response);
+			return;
+		}
+		
+		bean.setCustomerID((int) request.getSession().getAttribute("customer_id"));
+		
 		send(bean);
 		RequestDispatcher rd = request.getRequestDispatcher("website_after_login.jsp");
 		rd.forward(request, response);
@@ -49,6 +53,7 @@ public class CreditApplicationServlet extends HttpServlet {
 		doPost(req, resp);
 	}
 
+	// Übermittlung des Privatkreditantrages an die Datenbank
 	public void send(CreditApplicationBean bean) {
 
 		Connection connection = null;
@@ -61,7 +66,7 @@ public class CreditApplicationServlet extends HttpServlet {
 			
 			st.setInt(1, 0);
 			st.setInt(2, 0);
-			st.setInt(3, 4);
+			st.setInt(3, bean.getCustomerID());
 			st.setBoolean(4, false);
 			st.setString(5, bean.getCreditUsage());
 			st.setDouble(6, Double.valueOf(bean.getCreditValue()));

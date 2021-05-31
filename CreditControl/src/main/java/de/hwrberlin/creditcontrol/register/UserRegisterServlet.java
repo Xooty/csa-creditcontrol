@@ -30,6 +30,16 @@ public class UserRegisterServlet extends HttpServlet {
 		String email = request.getParameter("email");
 
 		PrintWriter printWriter = response.getWriter();
+		
+		// Falls keine Datenbankverbindung hergestellt werden kann, wird auf die registration.jsp zurückgeleitet und eine Fehlermeldung ausgegeben
+		Connection conn = MySQL.openConnection(); 
+		if (conn == null) {
+			printWriter.println("Es konnte keine Verbindung mit der Datenbank hergestellt werden!");
+			RequestDispatcher rd = request.getRequestDispatcher("registration.jsp");
+			rd.include(request, response);
+			return;
+		}
+		MySQL.closeConnection(conn);
 
 		UserRegisterBean bean = new UserRegisterBean();
 		bean.setUsername(name);
@@ -39,11 +49,15 @@ public class UserRegisterServlet extends HttpServlet {
 		bean.setEmail(email);
 		request.getSession().setAttribute("customer_bean", bean);
 
+		// Aufruf der Validierungsmethode, diese wird in einem String gespeichert
 		String s = validate(bean);
 
+		// Überprüfung welcher Wert zurückgegeben wurde und dementsprechende Weiterleitung bzw. Ausgabe von Fehlermeldungen
 		if (s.equals("success")) {
 			RequestDispatcher rd = request.getRequestDispatcher("loginform.jsp");
 			rd.forward(request, response);
+			printWriter.println("Sie haben sich erfolgreich registriert!");
+			rd.include(request, response);
 		} else if (s.equals("exists")) {
 			printWriter.println("Dieser Benutzername existiert bereits!");
 			RequestDispatcher rd = request.getRequestDispatcher("registration.jsp");
@@ -60,6 +74,7 @@ public class UserRegisterServlet extends HttpServlet {
 		doPost(req, resp);
 	}
 
+	// Methode zum validieren der Registrierungsdaten, mit entsprechender Abfrage ob Daten bereits vorhanden sind und darauf folgender Speicherung der eingegebenen Daten
 	public String validate(UserRegisterBean bean) {
 
 		MySQL.initTables();
