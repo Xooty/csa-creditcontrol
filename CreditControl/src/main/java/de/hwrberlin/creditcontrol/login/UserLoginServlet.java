@@ -38,9 +38,7 @@ public class UserLoginServlet extends HttpServlet {
 		}
 		MySQL.closeConnection(conn);
 		
-		System.out.println(System.currentTimeMillis());
-		UserBean bean = validate(name, password);
-		System.out.println(System.currentTimeMillis());
+		UserBean bean = validate(name, password, request);
 		
 		if (bean != null) {
 			request.getSession().setAttribute("login", bean);
@@ -62,7 +60,7 @@ public class UserLoginServlet extends HttpServlet {
 		doPost(req, resp);
 	}
 
-	public UserBean validate(String username, String password) {
+	public UserBean validate(String username, String password, HttpServletRequest request) {
 		
 		Connection connection = null;
 		PreparedStatement st = null;
@@ -101,6 +99,52 @@ public class UserLoginServlet extends HttpServlet {
 				bean.setFirstName(first_name);
 				bean.setLastName(rs.getString("last_name"));
 				bean.setEmail(rs.getString("email"));
+			}
+			
+			rs.close();
+			st.close();
+			
+			st = connection.prepareStatement("SELECT * FROM credit_applications_private WHERE customer_id = ?");
+			st.setInt(1, customer_id);
+			
+			rs = st.executeQuery();
+			
+			if (rs.first()) {
+				request.getSession().setAttribute("credit_usage_private", rs.getString("credit_usage"));
+				request.getSession().setAttribute("credit_value_private", rs.getString("credit_value") + " €");
+				request.getSession().setAttribute("credit_runtime_private", rs.getString("runtime") + " Monate");
+				request.getSession().setAttribute("credit_verified_private", rs.getBoolean("verified"));
+				request.getSession().setAttribute("credit_rate_private", (Integer.valueOf(rs.getString("credit_value")) / Integer.valueOf(rs.getString("runtime"))) + " € / Monat");
+			} else {
+				request.getSession().setAttribute("credit_usage_private", "Kein Kredit vorhanden");
+				request.getSession().setAttribute("credit_value_private", "Kein Kredit vorhanden");
+				request.getSession().setAttribute("credit_runtime_private", "Kein Kredit vorhanden");
+				request.getSession().setAttribute("credit_verified_private", "Kein Kredit vorhanden");
+				request.getSession().setAttribute("credit_rate_private", "Kein Kredit vorhanden");
+			}
+			
+			rs.close();
+			st.close();
+			
+			st = connection.prepareStatement("SELECT * FROM credit_applications_mortage WHERE customer_id = ?");
+			st.setInt(1, customer_id);
+			
+			rs = st.executeQuery();
+			
+			if (rs.first()) {
+				request.getSession().setAttribute("credit_property_type_mortage", rs.getString("property_type"));
+				request.getSession().setAttribute("credit_value_mortage", rs.getString("credit_value") + " €");
+				request.getSession().setAttribute("credit_runtime_mortage", rs.getString("runtime") + " Monate");
+				request.getSession().setAttribute("credit_verified_mortage", rs.getBoolean("verified"));
+				request.getSession().setAttribute("credit_rate_mortage", (Integer.valueOf(rs.getString("credit_value")) / Integer.valueOf(rs.getString("runtime"))) + " € / Monat");
+				request.getSession().setAttribute("credit_address_mortage", rs.getString("address"));
+			} else {
+				request.getSession().setAttribute("credit_property_type_mortage", "Kein Kredit vorhanden");
+				request.getSession().setAttribute("credit_value_mortage", "Kein Kredit vorhanden");
+				request.getSession().setAttribute("credit_runtime_mortage", "Kein Kredit vorhanden");
+				request.getSession().setAttribute("credit_verified_mortage", "Kein Kredit vorhanden");
+				request.getSession().setAttribute("credit_rate_mortage", "Kein Kredit vorhanden");
+				request.getSession().setAttribute("credit_address_mortage", "Kein Kredit vorhanden");
 			}
 			
 			MySQL.closeRessources(rs, st, connection);

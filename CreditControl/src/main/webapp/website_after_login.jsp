@@ -194,14 +194,10 @@
 				<a href="website.jsp">Logout</a>
 			</div>
 			<!--Privatkredit anzeigen -->		
-			<button class="button_profil" style="position: absolute; top:390px; left:110px" onclick="showCreditsPriv();">Privatkredit anzeigen</button>
+			<button class="button_profil" type="submit" style="position: absolute; top:390px; left:110px" onclick="showCreditsPriv();">Privatkredit anzeigen</button>
 			<!--Baufinanzierung anzeigen -->		
 			<button class="button_profil" style="position: absolute; top:450px; left:110px" onclick="showCreditsBau();">Baufinanzierung anzeigen</button>
 		</div>
-			<div
-				style="position: absolute; bottom: -45px; left: 110px; font-family: Advent Pro;">
-				<a href="website.jsp">Logout</a>
-			</div>
 		</div>
 	<div class="container_mid">
 		<div class="con">
@@ -287,21 +283,22 @@ Gebundener Sollzinsatz: 1,15 % p. a
 		<!--Anezeige der Details für die vom Nutzer aufgenommene Baufinanzierung -->		
 		<div id="text_creditsBau"
 			style="display: none; resize: none; width: 50%; height: 300px; position: absolute; left: 450px; top: 540px; font-family: Advent Pro; border: none; border-radius: 45px; font-size: 25px; text-align: center; background-color: transparent;">
-		<p>Immobilienart:<%= request.getSession().getAttribute("") %></p>
-		<p>Kredithöhe: <%= request.getSession().getAttribute("") %></p>
-		<p>Laufzeit: <%= request.getSession().getAttribute("") %></p>
-		<p>Ratenhöhe <%= request.getSession().getAttribute("") %></p>
-		<p>Status der Genehmigung: <%= request.getSession().getAttribute("") %></p>
+		<p>Immobilienart: <%= request.getSession().getAttribute("credit_property_type_mortage") %></p>
+		<p>Kredithöhe: <%= request.getSession().getAttribute("credit_value_mortage") %></p>
+		<p>Laufzeit: <%= request.getSession().getAttribute("credit_runtime_mortage") %></p>
+		<p>Ratenhöhe <%= request.getSession().getAttribute("credit_rate_mortage") %></p>
+		<p>Adresse: <%= request.getSession().getAttribute("credit_address_mortage") %></p>
+		<p>Status der Genehmigung: <%= request.getSession().getAttribute("credit_verified_mortage") %></p>
 		</div>
 		
 		<!--Anezeige der Details für die vom Nutzer aufgenommenen Privatkredit -->	
 		<div id="text_creditsPriv"
 		style="display: none; resize: none; width: 50%; height: 300px; position: absolute; left: 450px; top: 540px; font-family: Advent Pro; border: none; border-radius: 45px; font-size: 25px; text-align: center; background-color: transparent;">
-		<p>Verwendungszweck:<%= request.getSession().getAttribute("") %></p>
-		<p>Kredithöhe: <%= request.getSession().getAttribute("") %></p>
-		<p>Laufzeit: <%= request.getSession().getAttribute("") %></p>
-		<p>Ratenhöhe <%= request.getSession().getAttribute("") %></p>
-		<p>Status der Genehmigung: <%= request.getSession().getAttribute("") %></p>
+		<p>Verwendungszweck: <%= request.getSession().getAttribute("credit_usage_private") %></p>
+		<p>Kredithöhe: <%= request.getSession().getAttribute("credit_value_private") %></p>
+		<p>Laufzeit: <%= request.getSession().getAttribute("credit_runtime_private") %></p>
+		<p>Ratenhöhe <%= request.getSession().getAttribute("credit_rate_private") %></p>
+		<p>Status der Genehmigung: <%= request.getSession().getAttribute("credit_verified_private") %></p>
 		</div>
 	</div>
 

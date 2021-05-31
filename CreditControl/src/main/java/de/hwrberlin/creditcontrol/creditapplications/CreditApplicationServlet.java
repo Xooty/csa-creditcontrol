@@ -1,8 +1,10 @@
 package de.hwrberlin.creditcontrol.creditapplications;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import javax.servlet.RequestDispatcher;
@@ -19,6 +21,8 @@ public class CreditApplicationServlet extends HttpServlet {
 			throws ServletException, IOException {
 		response.setContentType("text/html;  charset=UTF-8");
 		response.setCharacterEncoding("UTF-8");
+		
+		PrintWriter printWriter = response.getWriter();
 		
 		String credit_usage = request.getParameter("form_verwendungszweck");
 		String employer = request.getParameter("form_arbeitgeber");
@@ -43,9 +47,21 @@ public class CreditApplicationServlet extends HttpServlet {
 		
 		bean.setCustomerID((int) request.getSession().getAttribute("customer_id"));
 		
-		send(bean);
-		RequestDispatcher rd = request.getRequestDispatcher("website_after_login.jsp");
-		rd.forward(request, response);
+		
+		if (send(bean)) {
+			request.getSession().setAttribute("credit_usage_private", bean.getCreditUsage());
+			request.getSession().setAttribute("credit_value_private", bean.getCreditValue() + " €");
+			request.getSession().setAttribute("credit_runtime_private", bean.getRuntime() + " Monate");
+			request.getSession().setAttribute("credit_verified_private", bean.isVerified());
+			request.getSession().setAttribute("credit_rate_private", (Integer.valueOf(bean.getCreditValue()) / Integer.valueOf(bean.getRuntime())) + " € / Monat");
+			
+			RequestDispatcher rd = request.getRequestDispatcher("website_after_login.jsp");
+			rd.forward(request, response);
+		} else {
+			printWriter.println("Sie haben bereits einen Kredit angefragt!");
+			RequestDispatcher rd = request.getRequestDispatcher("credit.jsp");
+			rd.include(request, response);
+		}
 	}
 
 	@Override
@@ -54,13 +70,26 @@ public class CreditApplicationServlet extends HttpServlet {
 	}
 
 	// Übermittlung des Privatkreditantrages an die Datenbank
-	public void send(CreditApplicationBean bean) {
+	public boolean send(CreditApplicationBean bean) {
 
 		Connection connection = null;
 		PreparedStatement st = null;
+		ResultSet rs = null;
 		
 		try {
 			connection = MySQL.openConnection();
+			
+			st = connection.prepareStatement("SELECT * FROM credit_applications_private WHERE customer_id = ?");
+			st.setInt(1, bean.getCustomerID());
+			
+			rs = st.executeQuery();
+			
+			if (rs.first()) {
+				return false;
+			}
+			
+			rs.close();
+			st.close();
 			
 			st = connection.prepareStatement("INSERT INTO credit_applications_private (credit_id, employee_id, customer_id, verified, credit_usage, credit_value, runtime, employer, employment_type, gross_income) VALUES (?,?,?,?,?,?,?,?,?,?)");
 			
@@ -82,6 +111,7 @@ public class CreditApplicationServlet extends HttpServlet {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+		return true;
 	}
 	
 //	<div id="kreditRechner"

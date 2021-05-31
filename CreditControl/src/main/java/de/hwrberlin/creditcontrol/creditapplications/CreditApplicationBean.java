@@ -2,8 +2,9 @@ package de.hwrberlin.creditcontrol.creditapplications;
 
 public class CreditApplicationBean {
 
-	private String credit_usage, employer, employment_type, gross_income, credit_value, runtime, propterty_type, address;
-	private int customer_id;
+	private String credit_usage, employer, employment_type, gross_income, credit_value, runtime, property_type, address;
+	private int customer_id, credit_rate;
+	private boolean verified;
 
 	public String getCreditUsage() {
 		return credit_usage;
@@ -54,11 +55,11 @@ public class CreditApplicationBean {
 	}
 	
 	public String getPropertyType() {
-		return this.propterty_type;
+		return this.property_type;
 	}
 	
 	public void setPropertyType(String property_type) {
-		this.propterty_type = property_type;
+		this.property_type = property_type;
 	}
 	
 	public String getAddress() {
@@ -75,5 +76,21 @@ public class CreditApplicationBean {
 	
 	public void setCustomerID(int customer_id) {
 		this.customer_id = customer_id;
+	}
+	
+	public int getCreditRate() {
+		return this.credit_rate;
+	}
+	
+	public void setCreditRate(int credit_rate) {
+		this.credit_rate = credit_rate;
+	}
+	
+	public boolean isVerified() {
+		return this.verified;
+	}
+	
+	public void setVerified(boolean verified) {
+		this.verified = verified;
 	}
 }

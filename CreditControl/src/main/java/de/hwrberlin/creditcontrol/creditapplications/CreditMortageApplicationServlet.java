@@ -1,8 +1,10 @@
 package de.hwrberlin.creditcontrol.creditapplications;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import javax.servlet.RequestDispatcher;
@@ -20,6 +22,8 @@ public class CreditMortageApplicationServlet extends HttpServlet {
 			throws ServletException, IOException {
 		response.setContentType("text/html;  charset=UTF-8");
 		response.setCharacterEncoding("UTF-8");
+		
+		PrintWriter printWriter = response.getWriter();
 		
 		String property_type = request.getParameter("form_verwendungszweck");
 		String employer = request.getParameter("form_arbeitgeber");
@@ -43,10 +47,21 @@ public class CreditMortageApplicationServlet extends HttpServlet {
 			return;
 		}
 		bean.setCustomerID((int) request.getSession().getAttribute("customer_id"));
-		
-		send(bean);
-		RequestDispatcher rd = request.getRequestDispatcher("website_after_login.jsp");
-		rd.forward(request, response);
+
+		if (send(bean)) {
+			request.getSession().setAttribute("credit_property_type_mortage", bean.getPropertyType());
+			request.getSession().setAttribute("credit_value_mortage", bean.getCreditValue() + " €");
+			request.getSession().setAttribute("credit_runtime_mortage", bean.getRuntime() + " Monate");
+			request.getSession().setAttribute("credit_verified_mortage", bean.isVerified());
+			request.getSession().setAttribute("credit_address_mortage", bean.getAddress());
+			request.getSession().setAttribute("credit_rate_mortage", (Integer.valueOf(bean.getCreditValue()) / Integer.valueOf(bean.getRuntime())) + " € / Monat");
+			RequestDispatcher rd = request.getRequestDispatcher("website_after_login.jsp");
+			rd.forward(request, response);
+		} else {
+			printWriter.println("Sie haben bereits einen Baufinanzierungskredit angefragt!");
+			RequestDispatcher rd = request.getRequestDispatcher("credit_mortage.jsp");
+			rd.include(request, response);
+		}
 	}
 
 	@Override
@@ -54,13 +69,26 @@ public class CreditMortageApplicationServlet extends HttpServlet {
 		doPost(req, resp);
 	}
 
-	public void send(CreditApplicationBean bean) {
+	public boolean send(CreditApplicationBean bean) {
 
 		Connection connection = null;
 		PreparedStatement st = null;
+		ResultSet rs = null;
 
 		try {
 			connection = MySQL.openConnection();
+			
+			st = connection.prepareStatement("SELECT * FROM credit_applications_mortage WHERE customer_id = ?");
+			st.setInt(1, bean.getCustomerID());
+			
+			rs = st.executeQuery();
+			
+			if (rs.first()) {
+				return false;
+			}
+			
+			rs.close();
+			st.close();
 			
 			st = connection.prepareStatement("INSERT INTO credit_applications_mortage (employee_id, customer_id, verified, property_type, credit_value, runtime, employer, employment_type, gross_income, address) VALUES (?,?,?,?,?,?,?,?,?,?)");
 			
@@ -82,5 +110,6 @@ public class CreditMortageApplicationServlet extends HttpServlet {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+		return true;
 	}
 }
