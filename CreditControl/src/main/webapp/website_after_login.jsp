@@ -22,6 +22,8 @@
 		var textareaBau = document.getElementById("text_area_bau");	
 		var textareaSup = document.getElementById("text_area_sup");
 		var buttonSup = document.getElementById("button_sup");
+		var textAreaCreditsPriv = document.getElementById("text_creditsPriv");
+		var textAreaCreditsBau = document.getElementById("text_creditsBau");
 
 		var textareaProfil = document.getElementById("text_profil");
 
@@ -31,6 +33,8 @@
 			textareaProfil.style.display= "none";
 			textareaSup.style.display = "none";
 			buttonSup.style.display = "none";
+			textAreaCreditsPriv.style.display = "none";
+			textAreaCreditsBau.style.display = "none";
 			
 		} else if(selectedValuePriv == "3"){
 			textareaSup.style.display = "block";
@@ -38,6 +42,8 @@
 			textareaProfil.style.display= "none";
 			textareaPriv.style.display = "none";
 			buttonSup.style.display = "block";
+			textAreaCreditsPriv.style.display = "none";
+			textAreaCreditsBau.style.display = "none";
 		
 		}else {
 			textareaPriv.style.display = "none";
@@ -60,6 +66,8 @@
 		var textareaPriv = document.getElementById("text_area_priv");	
 		var textareaSup = document.getElementById("text_area_sup");
 		var buttonSup = document.getElementById("button_sup");
+		var textAreaCreditsPriv = document.getElementById("text_creditsPriv");
+		var textAreaCreditsBau = document.getElementById("text_creditsBau");
 	
 		var textareaProfil = document.getElementById("text_profil");
 	
@@ -69,6 +77,8 @@
 			textareaProfil.style.display= "none";
 			textareaSup.style.display = "none";
 			buttonSup.style.display = "none";
+			textAreaCreditsPriv.style.display = "none";
+			textAreaCreditsBau.style.display = "none";
 			
 		} else if(selectedValueBau == "3"){
 			textareaSup.style.display = "block";
@@ -76,6 +86,8 @@
 			textareaBau.style.display= "none";
 			textareaProfil.style.display = "none";
 			buttonSup.style.display = "block";
+			textAreaCreditsPriv.style.display = "none";
+			textAreaCreditsBau.style.display = "none";
 			
 		}else {
 			textareaBau.style.display = "none";
@@ -97,11 +109,61 @@
 		var textareaBau = document.getElementById("text_area_bau");
 		var textareaSup = document.getElementById("text_area_sup");
 		var buttonSup = document.getElementById("button_sup");
+		var textAreaCreditsPriv = document.getElementById("text_creditsPriv");
+		var textAreaCreditsBau = document.getElementById("text_creditsBau");
 			
 		textareaSup.style.display = "none";
 		textareaBau.style.display = "none";
 		textareaPriv.style.display = "none";
 		buttonSup.style.display = "none";
+		textAreaCreditsPriv.style.display = "none";
+		textAreaCreditsBau.style.display = "none";
+	}
+	
+	//Funktion, um die anderen Textareas auszublenden und für die Ausgabe des Textfeldes einer aufgenommenen Baufinanzierung
+	function showCreditsBau(){
+			
+		var textAreaCreditsBau = document.getElementById("text_creditsBau");
+		
+		textAreaCreditsBau.style.display = "block";
+		
+		var textareaProfil = document.getElementById("text_profil");
+		var textareaPriv = document.getElementById("text_area_priv");
+		var textareaBau = document.getElementById("text_area_bau");
+		var textareaSup = document.getElementById("text_area_sup");
+		var buttonSup = document.getElementById("button_sup");
+		var textAreaCreditsPriv = document.getElementById("text_creditsPriv");
+		
+		textareaSup.style.display = "none";
+		textareaBau.style.display = "none";
+		textareaPriv.style.display = "none";
+		textareaProfil.style.display = "none";
+		buttonSup.style.display = "none";
+		textAreaCreditsPriv.style.display = "none"
+		
+	}
+	
+	//Funktion, um die anderen Textareas auszublenden und für die Ausgabe des Textfeldes eines aufgenommenen Privatkredites
+	function showCreditsPriv(){
+		
+		var textAreaCreditsPriv = document.getElementById("text_creditsPriv");
+		
+		textAreaCreditsPriv.style.display = "block";
+		
+		var textareaProfil = document.getElementById("text_profil");
+		var textareaPriv = document.getElementById("text_area_priv");
+		var textareaBau = document.getElementById("text_area_bau");
+		var textareaSup = document.getElementById("text_area_sup");
+		var buttonSup = document.getElementById("button_sup");
+		var textAreaCreditsBau = document.getElementById("text_creditsBau");
+		
+		textareaSup.style.display = "none";
+		textareaBau.style.display = "none";
+		textareaPriv.style.display = "none";
+		textareaProfil.style.display = "none";
+		buttonSup.style.display = "none";
+		textAreaCreditsBau.style.display = "none"
+		
 	}
 </script>
 
@@ -131,8 +193,16 @@
 				style="position: absolute; bottom: -45px; left: 110px; font-family: Advent Pro;">
 				<a href="website.jsp">Logout</a>
 			</div>
+			<!--Privatkredit anzeigen -->		
+			<button class="button_profil" style="position: absolute; top:390px; left:110px" onclick="showCreditsPriv();">Privatkredit anzeigen</button>
+			<!--Baufinanzierung anzeigen -->		
+			<button class="button_profil" style="position: absolute; top:450px; left:110px" onclick="showCreditsBau();">Baufinanzierung anzeigen</button>
 		</div>
-	</div>
+			<div
+				style="position: absolute; bottom: -45px; left: 110px; font-family: Advent Pro;">
+				<a href="website.jsp">Logout</a>
+			</div>
+		</div>
 	<div class="container_mid">
 		<div class="con">
 			<div class="con_style">Privatkredit</div>
@@ -213,6 +283,25 @@ Gebundener Sollzinsatz: 1,15 % p. a
 		<p>Nachname: <%= request.getSession().getAttribute("last_name") %></p>
 		<p>E-Mail-Adresse: <%= request.getSession().getAttribute("email") %></p>
 		
+		</div>
+		<!--Anezeige der Details für die vom Nutzer aufgenommene Baufinanzierung -->		
+		<div id="text_creditsBau"
+			style="display: none; resize: none; width: 50%; height: 300px; position: absolute; left: 450px; top: 540px; font-family: Advent Pro; border: none; border-radius: 45px; font-size: 25px; text-align: center; background-color: transparent;">
+		<p>Immobilienart:<%= request.getSession().getAttribute("") %></p>
+		<p>Kredithöhe: <%= request.getSession().getAttribute("") %></p>
+		<p>Laufzeit: <%= request.getSession().getAttribute("") %></p>
+		<p>Ratenhöhe <%= request.getSession().getAttribute("") %></p>
+		<p>Status der Genehmigung: <%= request.getSession().getAttribute("") %></p>
+		</div>
+		
+		<!--Anezeige der Details für die vom Nutzer aufgenommenen Privatkredit -->	
+		<div id="text_creditsPriv"
+		style="display: none; resize: none; width: 50%; height: 300px; position: absolute; left: 450px; top: 540px; font-family: Advent Pro; border: none; border-radius: 45px; font-size: 25px; text-align: center; background-color: transparent;">
+		<p>Verwendungszweck:<%= request.getSession().getAttribute("") %></p>
+		<p>Kredithöhe: <%= request.getSession().getAttribute("") %></p>
+		<p>Laufzeit: <%= request.getSession().getAttribute("") %></p>
+		<p>Ratenhöhe <%= request.getSession().getAttribute("") %></p>
+		<p>Status der Genehmigung: <%= request.getSession().getAttribute("") %></p>
 		</div>
 	</div>
 

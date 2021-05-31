@@ -31,7 +31,8 @@ public class UserRegisterServlet extends HttpServlet {
 
 		PrintWriter printWriter = response.getWriter();
 		
-		// Falls keine Datenbankverbindung hergestellt werden kann, wird auf die registration.jsp zurückgeleitet und eine Fehlermeldung ausgegeben
+		// Falls keine Datenbankverbindung hergestellt werden kann, wird auf die registration.jsp zurï¿½ckgeleitet und eine Fehlermeldung ausgegeben
+		MySQL.initTables();
 		Connection conn = MySQL.openConnection(); 
 		if (conn == null) {
 			printWriter.println("Es konnte keine Verbindung mit der Datenbank hergestellt werden!");
@@ -52,7 +53,7 @@ public class UserRegisterServlet extends HttpServlet {
 		// Aufruf der Validierungsmethode, diese wird in einem String gespeichert
 		String s = validate(bean);
 
-		// Überprüfung welcher Wert zurückgegeben wurde und dementsprechende Weiterleitung bzw. Ausgabe von Fehlermeldungen
+		// ï¿½berprï¿½fung welcher Wert zurï¿½ckgegeben wurde und dementsprechende Weiterleitung bzw. Ausgabe von Fehlermeldungen
 		if (s.equals("success")) {
 			RequestDispatcher rd = request.getRequestDispatcher("loginform.jsp");
 			rd.forward(request, response);
